@@ -1,0 +1,46 @@
+!!!
+%html
+  %head
+    %title
+      Link Manager
+    = javascript_include_tag "application"
+    = stylesheet_link_tag "application"
+    = csrf_meta_tags
+
+  %body
+    - flash.each do |name, message|
+      #notify-container
+        %div{:class => name}
+          = message
+
+    #container
+      #header
+        #header_content
+          = link_to root_path, :id => 'site_logo' do
+            %span
+              Link Manager
+          %ul#account_box
+            - if user_signed_in?
+              %li
+                = link_to t("views.application.links"), links_path
+              %li
+                = link_to t("auth.sign_out"), destroy_user_session_path, :method => :delete
+            - else
+              %li
+                = link_to t("auth.sign_in"), new_user_session_path
+      #main
+        #page_content
+          = yield
+
+      #footer
+        #footer_content
+          %ul#nav_bottom
+            %li
+              = link_to "About", "#"
+              %p
+                Comming soon
+          %p.copyright
+            copyright @2011
+          %ul.site_links
+            %li
+              = link_to "Links Manager", root_path

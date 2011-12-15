@@ -1,0 +1,5 @@
+ru:
+  parts:
+    auth: 
+      sign_in: "Вход"
+      sign_out: "Выход"
