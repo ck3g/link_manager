@@ -14,7 +14,7 @@ class PaymentMethodsController < ApplicationController
   def create
     @method = PaymentMethod.new params[:payment_method]
     if @method.save
-      redirect_to payment_methods_path, :notice => t("views.payment_methods.successfully_created")
+      redirect_to payment_methods_path, :notice => t("views.application.successfully_created")
     else
       render :action => "new"
     end
@@ -24,7 +24,7 @@ class PaymentMethodsController < ApplicationController
     @method = PaymentMethod.find params[:id]
 
     if @method.update_attributes params[:payment_method]
-      redirect_to payment_methods_path, :notice => t("views.payment_methods.successfully_updated")
+      redirect_to payment_methods_path, :notice => t("views.application.successfully_updated")
     else
       render :action => "edit"
     end

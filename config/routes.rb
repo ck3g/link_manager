@@ -1,6 +1,5 @@
 LinkManager::Application.routes.draw do
-  resources :links
-  resources :payment_methods
+  resources :links, :payment_methods, :sellers
 
   devise_for :users
 

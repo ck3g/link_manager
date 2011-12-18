@@ -11,6 +11,10 @@ ru:
           attributes:
             name:
               blank: "Название не может быть пустым"
+        seller:
+          attributes:
+            name:
+              blank: "Имя не может быть пустым"
   auth: 
     sign_in: "Вход"
     sign_out: "Выход"
@@ -19,17 +23,24 @@ ru:
     application:
       links: "Ссылки"
       payment_methods: "Методы оплаты"
+      sellers: "Продавцы"
       actions: "Действия"
       edit: "Ред."
       show: "Просм."
       destroy: "Удал."
       are_you_sure: "Вы уверены?"
       new: "Добавить"
+      successfully_created: "Успешно создано"
+      successfully_updated: "Успешно изменено" 
     payment_methods:
       title: "Методы оплаты"
       id: "id"
       name: "Название"
       new: "Новый метод оплаты"
       edit: "Редактировать метод оплаты"
-      successfully_created: "Успешно создано"
-      successfully_updated: "Успешно изменено" 
+    sellers:
+      title: "Справочник продавцов"
+      id: "id"
+      name: "Имя"
+      new: "Новый продавец"
+      edit: "Редактировать продавца"
