@@ -31,4 +31,10 @@ namespace :deploy do
    task :restart, :roles => :app, :except => { :no_release => true } do
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
    end
+   
+   desc "Populates the Production Database"
+   task :seed do
+     puts "\n\n=== Populating the Production Database! ===\n\n"
+     run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=production"
+   end
 end

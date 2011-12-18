@@ -5,6 +5,12 @@ ru:
         email: "Email"
         password: "Пароль"
         remember_me: "Не выходить из системы"
+    errors:
+      models:
+        payment_method:
+          attributes:
+            name:
+              blank: "Название не может быть пустым"
   auth: 
     sign_in: "Вход"
     sign_out: "Выход"
@@ -12,3 +18,18 @@ ru:
   views:
     application:
       links: "Ссылки"
+      payment_methods: "Методы оплаты"
+      actions: "Действия"
+      edit: "Ред."
+      show: "Просм."
+      destroy: "Удал."
+      are_you_sure: "Вы уверены?"
+      new: "Добавить"
+    payment_methods:
+      title: "Методы оплаты"
+      id: "id"
+      name: "Название"
+      new: "Новый метод оплаты"
+      edit: "Редактировать метод оплаты"
+      successfully_created: "Успешно создано"
+      successfully_updated: "Успешно изменено" 

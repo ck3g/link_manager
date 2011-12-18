@@ -10,6 +10,7 @@ gem "haml", "~> 3.1.3"
 gem "kaminari", "~> 0.12.4"
 gem "devise", "~> 1.5.2"
 gem 'bitmask_attributes'
+gem "formtastic"
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
