@@ -1,5 +1,14 @@
 ru:
-  parts:
-    auth: 
-      sign_in: "Вход"
-      sign_out: "Выход"
+  activerecord:
+    attributes:
+      user:
+        email: "Email"
+        password: "Пароль"
+        remember_me: "Не выходить из системы"
+  auth: 
+    sign_in: "Вход"
+    sign_out: "Выход"
+
+  views:
+    application:
+      links: "Ссылки"
