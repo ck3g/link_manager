@@ -8,11 +8,11 @@
   %table.list_table
     %thead
       %tr
-        %td
+        %th
           = t("views.payment_methods.id")
-        %td
+        %th
           = t("views.payment_methods.name")
-        %td
+        %th.actions
           = t("views.application.actions")
     %tbody
       - @methods.each do |method|
@@ -21,6 +21,6 @@
             = method.id
           %td
             = method.name
-          %td
+          %td.actions
             = link_to t("views.application.edit"), edit_payment_method_path(method.id)
             = link_to t("views.application.destroy"), method, :confirm => t("views.application.are_you_sure"), :method => :delete

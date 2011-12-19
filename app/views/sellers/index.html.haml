@@ -8,11 +8,11 @@
   %table.list_table
     %thead
       %tr
-        %td
+        %th
           = t("views.sellers.id")
-        %td
+        %th
           = t("views.sellers.name")
-        %td
+        %th.actions
           = t("views.application.actions")
     %tbody
       - @sellers.each do |seller|
@@ -21,7 +21,7 @@
             = seller.id
           %td
             = seller.name
-          %td
+          %td.actions
             = link_to t("views.application.edit"), edit_seller_path(seller.id)
             = link_to t("views.application.destroy"), seller, :confirm => t("views.application.are_you_sure"), :method => :delete
 

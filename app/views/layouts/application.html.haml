@@ -20,18 +20,7 @@
             %span
               Link Manager
           %ul#account_box
-            - if user_signed_in?
-              %li
-                = link_to t("views.application.links"), links_path
-              %li
-                = link_to t("views.application.sellers"), sellers_path
-              %li
-                = link_to t("views.application.payment_methods"), payment_methods_path
-              %li
-                = link_to t("auth.sign_out"), destroy_user_session_path, :method => :delete
-            - else
-              %li
-                = link_to t("auth.sign_in"), new_user_session_path
+            = render :partial => 'layouts/menu'
       #main
         #page_content
           = yield

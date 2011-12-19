@@ -724,3 +724,15 @@ div.sign_in {
 div.sign_in h2 {
   margin-left: 25px;
 }
+
+.list_table {
+  width: 50%;
+}
+
+.list_table th {
+  font-weight: bold;
+}
+
+.list_table .actions {
+  text-align: right;
+}
