@@ -1,4 +1,6 @@
 class PaymentMethodsController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     @methods = PaymentMethod.order(:name)
   end

@@ -1,0 +1,9 @@
+= semantic_form_for @link do |f|
+  = f.inputs do
+    = f.input :url, :as => :string, :label => t("views.links.url")
+    = f.input :page_rank, :label => t("views.links.page_rank")
+    = f.input :name, :label => t("views.links.name")
+    = f.input :placement, :label => t("views.links.placement")
+    = f.input :keyword, :label => t("views.links.keyword")
+  = f.buttons do
+    = f.commit_button :button_html => { :class => 'button green tall', :disable_with => t("views.application.wait") }

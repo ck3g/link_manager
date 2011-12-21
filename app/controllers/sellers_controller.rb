@@ -1,4 +1,6 @@
 class SellersController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     @sellers = Seller.all
   end

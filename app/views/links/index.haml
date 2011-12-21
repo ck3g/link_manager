@@ -1,2 +1,35 @@
-%h2
-  links#index
+%h1
+  = title t("views.links.title")
+
+%p
+  = link_to t("views.application.new"), new_link_path, :class => "button green tall"
+
+- if @links.present?
+  %table.list_table
+    %thead
+      %tr
+        %th= t("views.links.url")
+        %th= t("views.links.page_rank")
+        %th= t("views.links.placement")
+        %th= t("views.links.name")
+        %th= t("views.links.keyword")
+        %th= t("views.links.seller")
+        %th= t("views.links.payment_method")
+        %th= t("views.links.days_left")
+        %th.actions= t("views.application.actions")
+    %tbody
+      - @links.each do |link|
+        %tr
+          %td= link.url
+          %td= link.page_rank
+          %td= link.placement
+          %td= link.name
+          %td= link.keyword
+          %td= ""
+          %td= ""
+          %td= "503"
+          %td.actions
+            = link_to t("views.links.payments"), link_payments_path(link.id) 
+            = link_to t("views.application.show"), link_path(link.id) 
+            = link_to t("views.application.edit"), edit_link_path(link.id)
+            = link_to t("views.application.destroy"), link, :confirm => t("views.application.are_you_sure"), :method => :delete

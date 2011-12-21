@@ -10,10 +10,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111218102232) do
+ActiveRecord::Schema.define(:version => 20111220203635) do
+
+  create_table "links", :force => true do |t|
+    t.string   "url"
+    t.string   "name"
+    t.integer  "page_rank"
+    t.string   "placement"
+    t.string   "keyword"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "payment_methods", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "link_id"
+    t.integer  "user_id"
+    t.float    "amount"
+    t.integer  "seller_id"
+    t.integer  "payment_method_id"
+    t.datetime "paid_at"
+    t.datetime "next_payment_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

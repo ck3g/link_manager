@@ -1,4 +1,7 @@
 ru:
+  support:
+    array:
+      two_words_connector: "; "
   activerecord:
     attributes:
       user:
@@ -15,6 +18,17 @@ ru:
           attributes:
             name:
               blank: "Имя не может быть пустым"
+        link:
+          attributes:
+            url:
+              blank: "Ссылка не может быть пустой"
+            page_rank: 
+              inclusion: "Должно быть в интервале от 1 до 10"
+              not_a_number: "Должно быть числом"
+            name:
+              blank: "Название не может быть пустым"
+            keyword:
+              blank: "Ключевое слово не может быть пустым"
   auth: 
     sign_in: "Вход"
     sign_out: "Выход"
@@ -32,6 +46,18 @@ ru:
       new: "Добавить"
       successfully_created: "Успешно создано"
       successfully_updated: "Успешно изменено" 
+      wait: "..."
+    links:
+      title: "Ссылки"
+      url: "URL"
+      page_rank: "PR"
+      placement: "Размещение"
+      name: "Название"
+      keyword: "Ключевое слово"
+      seller: "Продавец"
+      payment_method: "Метод оплаты"
+      days_left: "Дней до оплаты"
+      edit: "Редактировать"
     payment_methods:
       title: "Методы оплаты"
       id: "id"
@@ -44,3 +70,10 @@ ru:
       name: "Имя"
       new: "Новый продавец"
       edit: "Редактировать продавца"
+    payment:
+      new: "Оплата"
+      seller: "Продавец"
+      payment_method: "Метод оплаты"
+      amount: "Разовая сумма"
+      paid_at: "Дата оплаты"
+      next_payment_at: "Оплачено до"

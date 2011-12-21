@@ -109,6 +109,8 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta-tags (1.2.4)
+      actionpack
     mime-types (1.17.2)
     multi_json (1.0.4)
     mysql2 (0.3.11)
@@ -228,6 +230,7 @@ DEPENDENCIES
   json
   kaminari (~> 0.12.4)
   libnotify (~> 0.5.7)
+  meta-tags
   mysql2
   passenger (~> 3.0.9)
   rails (= 3.1.1)

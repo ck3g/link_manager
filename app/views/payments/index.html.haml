@@ -1,0 +1,31 @@
+%h1= title "оплаты для #{@link.url}"
+
+%p
+  = link_to t("views.application.new"), new_link_payment_path(@link), :class => "button green tall"
+
+- if @payments.present?
+  %table.list_table
+    %thead
+      %tr
+        %th
+          = t("views.payments.id")
+        %th
+          = t("views.payments.amount")
+        %th
+          = t("views.payments.seller")
+        %th
+          = t("views.payments.payment_method")
+        %th.actions
+          = t("views.application.actions")
+    %tbody
+      - @payments.each do |payment|
+        %tr
+          %td
+            = payment.id
+          %td
+            = payment.amount
+          %td
+            = payment.seller.name
+          %td
+            = payment.payment_method.name
+          %td.actions

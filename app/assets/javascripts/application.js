@@ -6,11 +6,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require_tree .
 //
 
 $(function() {
-    $("#notify-container").click(function() {
-        $(this).fadeOut("slow");
-    });
+  $("#notify-container").click(function() {
+    $(this).fadeOut("slow");
+  });
+
+  $('.datepicker').datepicker($.datepicker.regional['ru']);
 });
