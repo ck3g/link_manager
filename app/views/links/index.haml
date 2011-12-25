@@ -25,9 +25,9 @@
           %td= link.placement
           %td= link.name
           %td= link.keyword
-          %td= ""
-          %td= ""
-          %td= "503"
+          %td= link.seller_name
+          %td= link.payment_method_name
+          %td= link.days_left
           %td.actions
             = link_to t("views.links.payments"), link_payments_path(link.id) 
             = link_to t("views.application.show"), link_path(link.id) 

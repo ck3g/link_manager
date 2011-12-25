@@ -21,6 +21,7 @@ class LinksController < ApplicationController
     @link = Link.new params[:link]
     @link.user_id = current_user.id
     if @link.save
+      Log.user_creates_link @link
       redirect_to new_link_payment_path(@link), :notice => t("views.application.successfully_created")
     else
       render :action => "new"

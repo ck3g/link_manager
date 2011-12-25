@@ -1,4 +1,10 @@
 ru:
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M"
+  date: 
+    formats:
+      default: "%d.%m.%Y"
   support:
     array:
       two_words_connector: "; "
@@ -29,6 +35,15 @@ ru:
               blank: "Название не может быть пустым"
             keyword:
               blank: "Ключевое слово не может быть пустым"
+        payment:
+          attributes:
+            amount:
+              not_a_number: "Должна быть числом"
+              blank: "Не может быть пустой"
+            paid_at:
+              blank: "Не может быть пустой"
+            next_payment_at:
+              blank: "Не может быть пустой"
   auth: 
     sign_in: "Вход"
     sign_out: "Выход"
@@ -38,6 +53,7 @@ ru:
       links: "Ссылки"
       payment_methods: "Методы оплаты"
       sellers: "Продавцы"
+      log: "Журнал"
       actions: "Действия"
       edit: "Ред."
       show: "Просм."
@@ -58,6 +74,7 @@ ru:
       payment_method: "Метод оплаты"
       days_left: "Дней до оплаты"
       edit: "Редактировать"
+      payments: "Оплаты"
     payment_methods:
       title: "Методы оплаты"
       id: "id"
@@ -70,10 +87,47 @@ ru:
       name: "Имя"
       new: "Новый продавец"
       edit: "Редактировать продавца"
-    payment:
+    payments:
       new: "Оплата"
       seller: "Продавец"
       payment_method: "Метод оплаты"
       amount: "Разовая сумма"
       paid_at: "Дата оплаты"
       next_payment_at: "Оплачено до"
+      payments_for: "Оплаты для %{name}"
+      new_for: "Новая оплата для %{name}"
+      edit_for: "Редактирование оплаты для %{name}"
+      id: "id"
+      per_month: "В месяц"
+    logs:
+      title: "Журнал"
+      created_at: "Дата"
+      description: "Описание"
+      user: "Пользователь"
+      link: "Ccылка"
+  formtastic:
+    labels:
+      payment:
+        seller: "Продавец"
+        payment_method: "Метод оплаты"
+        amount: "Разовая сумма"
+        paid_at: "Дата оплаты"
+        next_payment_at: "Оплачено до"
+      seller:
+        name: "Имя"
+      payment_method:
+        name: "Название"
+      link:
+        url: "URL"
+        page_rank: "PR"
+        placement: "Размещение"
+        name: "Название"
+        keyword: "Ключевое слово"
+    actions:
+      create: "Создать"
+      update: "Сохранить"
+  log:
+    user:
+      create:
+        link: "%{user} создал ссылку %{link}"
+        payment_for_link: "%{user} оплатил ссылку %{link} c %{from} по %{to}"

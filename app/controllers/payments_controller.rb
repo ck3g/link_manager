@@ -15,10 +15,30 @@ class PaymentsController < ApplicationController
     @payment.link_id = @link.id
     @payment.user_id = current_user.id
     if @payment.save
-      redirect_to link_payments_path(@link_id), :notice => t("views.application.successfully_created")
+      Log.user_creates_payment @payment
+      redirect_to link_payments_path(@link.id), :notice => t("views.application.successfully_created")
     else
       render :action => "new", :link_id => @link.id
     end
+  end
+
+  def edit
+    @payment = Payment.find params[:id]
+  end
+
+  def update
+    @payment = Payment.find params[:id]
+    if @payment.update_attributes params[:payment]
+      redirect_to link_payments_path(@link.id), :notice => t("views.application.successfully_updated")
+    else
+      render :action => "edit", :link_id => @link.id
+    end
+  end
+
+  def destroy
+    @payment = Payment.find params[:id]
+    @payment.destroy
+    redirect_to link_payments_path(@link.id)
   end
 
 private

@@ -12,6 +12,7 @@ gem "devise", "~> 1.5.2"
 gem 'bitmask_attributes'
 gem "formtastic"
 gem "meta-tags", :require => 'meta_tags'
+gem "has_scope", "~> 0.5.1"
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'

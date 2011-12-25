@@ -1,5 +1,5 @@
 LinkManager::Application.routes.draw do
-  resources :payment_methods, :sellers
+  resources :payment_methods, :sellers, :logs
 
   resources :links do
     resources :payments

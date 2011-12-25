@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111220203635) do
+ActiveRecord::Schema.define(:version => 20111225174210) do
 
   create_table "links", :force => true do |t|
     t.string   "url"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(:version => 20111220203635) do
     t.string   "placement"
     t.string   "keyword"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "logs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "link_id"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
