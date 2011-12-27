@@ -3,7 +3,11 @@ LinkManager::Application.routes.draw do
 
   resources :links do
     resources :payments
+    get 'check', :on => :collection
+    post 'check', :on => :collection
   end
+
+
 
   devise_for :users
 

@@ -42,4 +42,11 @@ class LinksController < ApplicationController
     @link.destroy
     redirect_to links_path
   end
+
+  def check
+    if params[:links].present?
+      @links_to_check = params[:links].strip.split("\n").map(&:strip).compact.reject(&:blank?)
+      @links = Link.all.select { |link| @links_to_check.include? link.url }.collect { |link| link.url }
+    end
+  end
 end

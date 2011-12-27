@@ -75,6 +75,9 @@ ru:
       days_left: "Дней до оплаты"
       edit: "Редактировать"
       payments: "Оплаты"
+      check: "Проверка ссылок"
+      check_label: "Введите ссылки на проверку. Раздеренные переводом строки"
+      check_button: "Проверить"
     payment_methods:
       title: "Методы оплаты"
       id: "id"

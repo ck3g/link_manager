@@ -740,3 +740,21 @@ div.sign_in h2 {
 .list_table tr.total {
   height: 50px;
 }
+
+textarea.check-links {
+  width: 50%;
+}
+
+ul.checked-links {
+  padding: 10px 0 10px 30px;
+  li {
+    margin-bottom: 5px;
+    span.exists {
+      color: #a00;
+    }
+    span.non-exists {
+      color: #0a0;
+    }
+  }
+}
+
