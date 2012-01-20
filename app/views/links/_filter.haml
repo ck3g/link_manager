@@ -1,0 +1,19 @@
+%fieldset.filter
+  %legend
+    = t("views.links.filter")
+  %div
+    = form_tag links_path, :method => :get, :class => 'formtastic' do
+      %fieldset.inputs
+        %ol
+          - [:url, :page_rank, :placement, :link_name, :keyword, :seller, :payment_method].each do |field|
+            %li.input
+              %label.label{ :for => field }
+                = t("views.links.#{field}")
+              = text_field_tag field, params[field]
+
+      %fieldset.buttons
+        %ol
+          %li.commit.button
+            %input.button.green.tall{:type => :submit, :value => t("views.links.do_filter")}
+
+

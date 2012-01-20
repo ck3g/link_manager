@@ -78,6 +78,8 @@ ru:
       check: "Проверка ссылок"
       check_label: "Введите ссылки на проверку. Раздеренные переводом строки"
       check_button: "Проверить"
+      filter: "Фильтр"
+      do_filter: "Фильтровать"
     payment_methods:
       title: "Методы оплаты"
       id: "id"

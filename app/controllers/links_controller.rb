@@ -1,8 +1,16 @@
 class LinksController < ApplicationController
   before_filter :authenticate_user!
 
+  has_scope :url
+  has_scope :page_rank
+  has_scope :placement
+  has_scope :link_name
+  has_scope :keyword
+
   def index
-    @links = Link.order('created_at DESC')
+    @links = apply_scopes(Link).order('created_at DESC')
+    @links = @links.where(:id => Link.by_seller(params[:seller])) if params[:seller].present?
+    @links = @links.where(:id => Link.by_payment_method(params[:payment_method])) if params[:payment_method].present?
   end
 
   def show
