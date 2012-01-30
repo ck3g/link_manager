@@ -42,8 +42,10 @@ ru:
               blank: "Не может быть пустой"
             paid_at:
               blank: "Не может быть пустой"
+              less_than: Не может быть позднее даты следующей оплаты
             next_payment_at:
               blank: "Не может быть пустой"
+              less_than: Не может быть ранее одной из действующих оплат
   auth: 
     sign_in: "Вход"
     sign_out: "Выход"
@@ -110,6 +112,7 @@ ru:
       description: "Описание"
       user: "Пользователь"
       link: "Ccылка"
+    back_to_links: Назад к просмотру ссылок
   formtastic:
     labels:
       payment:

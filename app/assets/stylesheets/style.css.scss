@@ -518,7 +518,7 @@ hr {
 }
 
 #header #header_content ul#account_box {
-    padding-top: 0.8em;
+    padding-top: 0.4em;
     float: right;
     margin-right: 0;
 }
@@ -780,4 +780,18 @@ ul.checked-links {
 .sideright {
   float: right;
   width: 350px;
+}
+
+table.show-link {
+  width: 400px;
+}
+
+table.show-link th {
+  width: 150px;
+  font-weight: bold;
+}
+
+
+div.action-links {
+  margin: 20px 0 10px 10px;
 }
