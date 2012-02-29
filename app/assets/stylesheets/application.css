@@ -6,5 +6,5 @@
  *= require formtastic
  *= require style
  *= require_tree . 
- *= require vendor
+ *= require formtastic_override
 */

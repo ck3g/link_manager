@@ -82,6 +82,7 @@ ru:
       check_button: "Проверить"
       filter: "Фильтр"
       do_filter: "Фильтровать"
+      link_name: Название
     payment_methods:
       title: "Методы оплаты"
       id: "id"

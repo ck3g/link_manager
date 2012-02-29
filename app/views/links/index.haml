@@ -4,6 +4,10 @@
 %p
   = link_to t("views.application.new"), new_link_path, :class => "button green tall"
   = link_to t("views.links.check"), check_links_path, :class => "button green tall"
+  = link_to t("views.links.filter"), "#", :id => :filter, :class => "button green tall", :remote => true
+
+#filter-wrapper
+  = render :partial => "filter"
 
 .sideleft
   - if @links.present?
@@ -35,6 +39,3 @@
               = link_to t("views.application.show"), link_path(link.id) 
               = link_to t("views.application.edit"), edit_link_path(link.id)
               = link_to t("views.application.destroy"), link, :confirm => t("views.application.are_you_sure"), :method => :delete
-.sideright
-  = render :partial => 'filter'
-.clear

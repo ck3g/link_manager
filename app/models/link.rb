@@ -17,7 +17,7 @@ class Link < ActiveRecord::Base
     if last_payment.present? && last_payment.next_payment_at.to_date > Date.today
       (last_payment.next_payment_at.to_date - Date.today).to_i
     else
-      nil_sign
+      0
     end
   end
 
@@ -38,8 +38,8 @@ class Link < ActiveRecord::Base
     self.select { |link| payments.include?(link.payments.last) }
   end
 
-  def self.by_payment_method(name)
-    payments = Payment.where :payment_method_id => PaymentMethod.where('name LIKE ?', "%#{name}%")
+  def self.by_payment_method(ids)
+    payments = Payment.where :payment_method_id => ids
     self.select { |link| payments.include?(link.payments.last) }
   end
 private

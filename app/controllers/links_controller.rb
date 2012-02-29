@@ -10,7 +10,8 @@ class LinksController < ApplicationController
   def index
     @links = apply_scopes(Link).order('created_at DESC')
     @links = @links.where(:id => Link.by_seller(params[:seller])) if params[:seller].present?
-    @links = @links.where(:id => Link.by_payment_method(params[:payment_method])) if params[:payment_method].present?
+    @links = @links.where(:id => Link.by_payment_method(params[:pm])) if params[:pm].present?
+    @links = @links.sort_by { |link| link.days_left }
   end
 
   def show
@@ -57,4 +58,5 @@ class LinksController < ApplicationController
       @links = Link.all.select { |link| @links_to_check.include? link.url }.collect { |link| link.url }
     end
   end
+
 end
