@@ -17,7 +17,8 @@ class Payment < ActiveRecord::Base
     if self.paid_at.present? && self.next_payment_at <= self.paid_at
       errors.add(:paid_at, I18n.t("activerecord.errors.models.payment.attributes.paid_at.less_than"))
     end
-    if self.next_payment_at.present? && self.next_payment_at <= self.link.payments.maximum(:next_payment_at)
+    except_self = link.payments.where("id != ?", id)
+    if self.next_payment_at.present? && self.next_payment_at <= except_self.maximum(:next_payment_at)
       errors.add(:next_payment_at, I18n.t("activerecord.errors.models.payment.attributes.next_payment_at.less_than"))
     end
   end

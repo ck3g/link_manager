@@ -140,3 +140,9 @@ ru:
       create:
         link: "%{user} создал ссылку %{link}"
         payment_for_link: "%{user} оплатил ссылку %{link} c %{from} по %{to}"
+
+  clear_filter: Сбросить параметры фильтра
+  links_list_is_empty: Список ссылок пуст
+  filter_results_is_empty: По вашему запросу ничего не найдено.
+  next_payment_at: Дата следующей оплаты
+

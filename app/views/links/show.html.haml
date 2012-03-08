@@ -22,6 +22,9 @@
     %th= t("views.links.payment_method")
     %td= @link.payment_method_name
   %tr
+    %th= t(:next_payment_at)
+    %td= l @link.next_payment_at
+  %tr
     %th= t("views.links.days_left")
     %td= @link.days_left
 

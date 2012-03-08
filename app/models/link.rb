@@ -14,11 +14,19 @@ class Link < ActiveRecord::Base
   scope :keyword, proc { |keyword| where('keyword LIKE ?', "%#{keyword}%") }
 
   def days_left
-    if last_payment.present? && last_payment.next_payment_at.to_date > Date.today
-      (last_payment.next_payment_at.to_date - Date.today).to_i
+    if last_payment.present?
+      if last_payment.next_payment_at.to_date > Date.today
+        (last_payment.next_payment_at.to_date - Date.today).to_i
+      else
+        -(Date.today - last_payment.next_payment_at.to_date).to_i
+      end
     else
       0
     end
+  end
+
+  def next_payment_at
+    last_payment.next_payment_at.to_date if last_payment.present?
   end
 
   def seller_name

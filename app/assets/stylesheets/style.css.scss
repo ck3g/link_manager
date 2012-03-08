@@ -7,18 +7,13 @@ html {
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
     margin: 0;
     padding: 0;
-    font-family: 'PFDinDisplayProRegular';
+    font-family: 'verdana';
     font-weight: normal;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 @font-face {
-    font-family: 'PFDinDisplayProRegular';
-    src: image-url('pfdindisplaypro-regular-webfont.eot');
-    src: image-url('pfdindisplaypro-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         image-url('pfdindisplaypro-regular-webfont.woff') format('woff'),
-         image-url('pfdindisplaypro-regular-webfont.ttf') format('truetype'),
-         image-url('pfdindisplaypro-regular-webfont.svg#PFDinDisplayProRegular') format('svg');
+    font-family: 'verdana';
     font-weight: normal;
     font-style: normal;
 }
@@ -444,7 +439,7 @@ input.url-wide {
 
 
 textarea {
-    font-family: 'Myriad Web', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'verdana';
     overflow: auto;
 }
 
@@ -518,7 +513,7 @@ hr {
 }
 
 #header #header_content ul#account_box {
-    padding-top: 0.4em;
+    padding-top: 0.7em;
     float: right;
     margin-right: 0;
 }
@@ -786,3 +781,8 @@ table.show-link th {
 div.action-links {
   margin: 20px 0 10px 10px;
 }
+
+a.cancel {
+  margin-left: 10px;
+}
+

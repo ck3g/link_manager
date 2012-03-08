@@ -39,3 +39,10 @@
               = link_to t("views.application.show"), link_path(link.id) 
               = link_to t("views.application.edit"), edit_link_path(link.id)
               = link_to t("views.application.destroy"), link, :confirm => t("views.application.are_you_sure"), :method => :delete
+  - else
+    %p 
+      - if params[:filter].present?
+        = t(:filter_results_is_empty)
+        = link_to t(:clear_filter), links_path
+      - else
+        = t(:link_list_is_empty)
