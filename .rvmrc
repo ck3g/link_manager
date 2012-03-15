@@ -1,1 +1,1 @@
-rvm --create use ree@link_manager
+rvm --create use 1.9.3@link_manager
