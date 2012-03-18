@@ -1,6 +1,3 @@
-%h1
-  = title t("views.links.title")
-
 %p
   = link_to t("views.application.new"), new_link_path, :class => "button green tall"
   = link_to t("views.links.check"), check_links_path, :class => "button green tall"
@@ -22,6 +19,7 @@
           %th= t("views.links.seller")
           %th= t("views.links.payment_method")
           %th= t("views.links.days_left")
+          %th= t(:status)
           %th.actions= t("views.application.actions")
       %tbody
         - @links.each do |link|
@@ -34,6 +32,7 @@
             %td= link.seller_name
             %td= link.payment_method_name
             %td= link.days_left
+            %td= link.status_name
             %td.actions
               = link_to t("views.links.payments"), link_payments_path(link.id) 
               = link_to t("views.application.show"), link_path(link.id) 

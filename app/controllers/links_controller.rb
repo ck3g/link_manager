@@ -12,6 +12,8 @@ class LinksController < ApplicationController
     @links = @links.where(:id => Link.by_seller(params[:seller])) if params[:seller].present?
     @links = @links.where(:id => Link.by_payment_method(params[:pm])) if params[:pm].present?
     @links = @links.sort_by { |link| link.days_left }
+
+    set_meta_tags :title => I18n.t(:links_title)
   end
 
   def show

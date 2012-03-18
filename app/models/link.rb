@@ -2,6 +2,7 @@ class Link < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
   belongs_to :user
   has_many :payments
+  belongs_to :status
 
   validates :url, :presence => true
   validates :name, :keyword, :presence => true
@@ -39,6 +40,14 @@ class Link < ActiveRecord::Base
 
   def total_amount
     self.payments.inject(0) { |sum, payment| sum + payment.amount }
+  end
+
+  def status_name
+    if self.status.present?
+      self.status.name
+    else
+      "-"
+    end
   end
 
   def self.by_seller(name)

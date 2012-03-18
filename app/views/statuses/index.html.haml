@@ -1,0 +1,21 @@
+%h2
+  = title t(:statuses_title)
+
+%p
+  = link_to t("views.application.new"), new_status_path, :class => "button green tall"
+
+- if @statuses.present?
+  %table.list_table
+    %thead
+      %tr
+        %th= t(:status_id)
+        %th= t(:status_name)
+        %th.actions= t("views.application.actions")
+    %tbody
+      - @statuses.each do |status|
+        %tr
+          %td= status.id
+          %td= status.name
+          %td.actions
+            = link_to t("views.application.edit"), edit_status_path(status.id)
+            = link_to t("views.application.destroy"), status, :confirm => t("views.application.are_you_sure"), :method => :delete

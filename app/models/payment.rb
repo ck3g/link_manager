@@ -14,11 +14,13 @@ class Payment < ActiveRecord::Base
 
   private
   def payment_dates
-    if self.paid_at.present? && self.next_payment_at <= self.paid_at
+    if paid_at.present? && next_payment_at <= paid_at
       errors.add(:paid_at, I18n.t("activerecord.errors.models.payment.attributes.paid_at.less_than"))
     end
+
     except_self = link.payments.where("id != ?", id)
-    if self.next_payment_at.present? && self.next_payment_at <= except_self.maximum(:next_payment_at)
+    link_payments = except_self.present? ? except_self : link.payments
+    if next_payment_at.present? && next_payment_at <= link_payments.maximum(:next_payment_at)
       errors.add(:next_payment_at, I18n.t("activerecord.errors.models.payment.attributes.next_payment_at.less_than"))
     end
   end
