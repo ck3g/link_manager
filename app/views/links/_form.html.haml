@@ -6,5 +6,5 @@
     = f.input :placement
     = f.input :keyword
     = f.input :status_id, :as => :select, :collection => Status.all
-  = f.buttons do
-    = f.commit_button :button_html => { :class => 'button green tall', :disable_with => t("views.application.wait") }
+  = f.buttons :class => "form-actions" do
+    = f.commit_button :button_html => { :class => 'btn btn-primary', :disable_with => t("views.application.wait") }

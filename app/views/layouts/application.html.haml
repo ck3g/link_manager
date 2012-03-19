@@ -5,34 +5,24 @@
     = javascript_include_tag "application"
     = stylesheet_link_tag "application"
     = csrf_meta_tags
-
+    /[if lt IE 9]
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   %body
-    - flash.each do |name, message|
+    %header.navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          = link_to "Links Manager", root_path, :id => "logo"
+          = render :partial => 'layouts/menu'
+    .container
+      = yield
+
+    %footer
+      .container
+        %p
+          &copy; Company 2012
+
+
+    -# flash.each do |name, message|
       #notify-container
         %div{:class => name}
           = message
-
-    #container
-      #header
-        #header_content
-          = link_to root_path, :id => 'site_logo' do
-            %span
-              Link Manager
-          %ul#account_box
-            = render :partial => 'layouts/menu'
-      #main
-        #page_content
-          = yield
-
-      #footer
-        #footer_content
-          %ul#nav_bottom
-            %li
-              = link_to "About", "#"
-              %p
-                Comming soon
-          %p.copyright
-            copyright @2012
-          %ul.site_links
-            %li
-              = link_to "Links Manager", root_path

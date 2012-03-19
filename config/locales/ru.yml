@@ -162,4 +162,7 @@ ru:
   status_id: id
   status_name: Название
   status: Статус
+  email: Email
+  password: Пароль
+  remember_me: "Не выходить из системы"
 

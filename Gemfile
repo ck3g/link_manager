@@ -10,9 +10,10 @@ gem "haml", "~> 3.1.3"
 gem "kaminari", "~> 0.12.4"
 gem "devise", "~> 1.5.2"
 gem 'bitmask_attributes'
-gem "formtastic"
+gem "formtastic-bootstrap"
 gem "meta-tags", :require => 'meta_tags'
 gem "has_scope", "~> 0.5.1"
+gem "bootstrap-sass", "2.0.0"
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'

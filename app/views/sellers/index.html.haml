@@ -1,11 +1,11 @@
-%h2
+%h1
   = title t("views.sellers.title")
 
 %p
-  = link_to t("views.application.new"), new_seller_path, :class => "button green tall"
+  = link_to t("views.application.new"), new_seller_path, :class => "btn"
 
 - if @sellers.present?
-  %table.list_table
+  %table.table.table-striped
     %thead
       %tr
         %th

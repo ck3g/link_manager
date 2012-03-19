@@ -10,5 +10,5 @@
 = form_tag check_links_path do
   %p
     = text_area_tag :links, params[:links], :rows => 15, :placeholder => t("views.links.check_label"), :class => 'check-links'
-  %p
-    = submit_tag t("views.links.check_button"), :class => "button green tall"
+  .form-actions
+    = submit_tag t("views.links.check_button"), :class => "btn btn-primary"

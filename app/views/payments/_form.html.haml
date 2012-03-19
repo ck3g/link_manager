@@ -5,5 +5,5 @@
     = f.input :amount
     = f.input :paid_at, :as => :datepicker, :input_html => {:class => 'datepicker', :value => to_datepicker(@payment.paid_at) }
     = f.input :next_payment_at, :as => :datepicker, :input_html => {:class => 'datepicker', :value => to_datepicker(@payment.next_payment_at)}
-  = f.buttons do
-    = f.commit_button :button_html => { :class => 'button green tall', :disable_with => t("views.application.wait") }
+  = f.buttons :class => "form-actions" do
+    = f.commit_button :button_html => { :class => 'btn btn-primary', :disable_with => t("views.application.wait") }

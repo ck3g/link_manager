@@ -5,5 +5,6 @@
 
 $ ->
   $("#filter").on "click", (e) ->  
+    $(this).toggleClass "active"
     e.preventDefault()
     $("#filter-wrapper").slideToggle()

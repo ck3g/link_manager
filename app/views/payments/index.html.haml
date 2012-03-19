@@ -1,10 +1,10 @@
 %h1= title t("views.payments.payments_for", :name => @link.url)
 
 %p
-  = link_to t("views.application.new"), new_link_payment_path(@link), :class => "button green tall"
+  = link_to t("views.application.new"), new_link_payment_path(@link), :class => "btn"
 
 - if @payments.present?
-  %table.list_table
+  %table.table.table-striped
     %thead
       %tr
         %th= t("views.payments.id")

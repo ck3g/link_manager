@@ -1,11 +1,11 @@
-%h2
+%h1
   = title t(:statuses_title)
 
 %p
-  = link_to t("views.application.new"), new_status_path, :class => "button green tall"
+  = link_to t("views.application.new"), new_status_path, :class => "btn"
 
 - if @statuses.present?
-  %table.list_table
+  %table.table.table-striped
     %thead
       %tr
         %th= t(:status_id)
