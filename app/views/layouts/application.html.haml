@@ -14,6 +14,7 @@
           = link_to "Links Manager", root_path, :id => "logo"
           = render :partial => 'layouts/menu'
     .container
+      = render :partial => 'shared/flash_messages'
       = yield
 
     %footer
@@ -22,7 +23,3 @@
           &copy; Company 2012
 
 
-    -# flash.each do |name, message|
-      #notify-container
-        %div{:class => name}
-          = message

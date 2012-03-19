@@ -63,7 +63,7 @@ p {
 }
 
 div.sign_in {
-  width: 400px;
+  width: 220px;
   margin: auto;
 }
 
@@ -76,4 +76,12 @@ input.error, textarea.error, select.error {
 
 .radio, .checkbox {
   padding: 0 18px 0 0;
+}
+
+#alerts-wrapper {
+  width: 700px;
+  margin: auto;
+  .alert {
+    text-align: center;
+  }
 }

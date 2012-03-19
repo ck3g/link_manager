@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/anjlab/bootstrap-rails.git
+  revision: 028a81746f1f8958df59dfb068d57f2932ef767d
+  specs:
+    anjlab-bootstrap-rails (2.0.2.1)
+      railties (>= 3.0)
+      sass
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -216,6 +224,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  anjlab-bootstrap-rails!
   bitmask_attributes
   bootstrap-sass (= 2.0.0)
   capistrano
