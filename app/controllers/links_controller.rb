@@ -3,13 +3,13 @@ class LinksController < ApplicationController
 
   has_scope :url
   has_scope :page_rank
-  has_scope :placement
   has_scope :link_name
   has_scope :keyword
 
   def index
     @links = apply_scopes(Link).order('created_at DESC')
     @links = @links.where(:id => Link.by_seller(params[:seller])) if params[:seller].present?
+    @links = @links.where(:placement_id => params[:placement]) if params[:placement].present?
     @links = @links.where(:id => Link.by_payment_method(params[:pm])) if params[:pm].present?
     @links = @links.sort_by { |link| link.days_left }
 

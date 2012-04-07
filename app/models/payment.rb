@@ -20,7 +20,7 @@ class Payment < ActiveRecord::Base
 
     except_self = link.payments.where("id != ?", id)
     link_payments = except_self.present? ? except_self : link.payments
-    if next_payment_at.present? && next_payment_at <= link_payments.maximum(:next_payment_at)
+    if next_payment_at.present? && link_payments.present? && next_payment_at <= link_payments.maximum(:next_payment_at)
       errors.add(:next_payment_at, I18n.t("activerecord.errors.models.payment.attributes.next_payment_at.less_than"))
     end
   end

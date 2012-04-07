@@ -1,0 +1,21 @@
+%h1
+  = title t(:placements_title)
+
+%p
+  = link_to t("views.application.new"), new_placement_path, :class => "btn"
+
+- if @placements.present?
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= t(:id)
+        %th= t(:name)
+        %th.actions= t("views.application.actions")
+    %tbody
+      - @placements.each do |placement|
+        %tr
+          %td= placement.id
+          %td= placement.name
+          %td.actions
+            = link_to t("views.application.edit"), edit_placement_path(placement.id)
+            = link_to t("views.application.destroy"), placement, :confirm => t("views.application.are_you_sure"), :method => :delete

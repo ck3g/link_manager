@@ -1,5 +1,5 @@
 %h2= title @link.name
-%table.show-link
+%table.table.vertical
   %tr
     %th= t("views.links.url")
     %td= @link.url
@@ -8,7 +8,7 @@
     %td= @link.page_rank
   %tr
     %th= t("views.links.placement")
-    %td= @link.placement
+    %td= @link.placement.name
   %tr
     %th= t("views.links.name")
     %td= @link.name
@@ -23,7 +23,7 @@
     %td= @link.payment_method_name
   %tr
     %th= t(:next_payment_at)
-    %td= l @link.next_payment_at
+    %td= l @link.next_payment_at rescue "-"
   %tr
     %th= t("views.links.days_left")
     %td= @link.days_left

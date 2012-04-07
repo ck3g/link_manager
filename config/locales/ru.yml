@@ -72,6 +72,7 @@ ru:
       successfully_updated: "Успешно изменено" 
       wait: "..."
       statuses: Статусы
+      placements: Размещение
     links:
       title: "Ссылки"
       url: "URL"
@@ -124,6 +125,9 @@ ru:
     statuses:
       new: "Новый статус"
       edit: "Редактировать статус"
+    placements:
+      new: "Новое размещение"
+      edit: Редактировать размещение
     back_to_links: Назад к просмотру ссылок
   formtastic:
     labels:
@@ -159,9 +163,10 @@ ru:
   next_payment_at: Дата следующей оплаты
   links_title: Ссылки
   statuses_title: Статусы
-  status_id: id
-  status_name: Название
+  id: id
+  name: Название
   status: Статус
+  placements_title: Размещение
   email: Email
   password: Пароль
   remember_me: "Не выходить из системы"

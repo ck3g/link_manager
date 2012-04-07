@@ -3,6 +3,7 @@ class Link < ActiveRecord::Base
   belongs_to :user
   has_many :payments
   belongs_to :status
+  belongs_to :placement
 
   validates :url, :presence => true
   validates :name, :keyword, :presence => true
@@ -10,7 +11,7 @@ class Link < ActiveRecord::Base
 
   scope :url, proc { |url| where('url LIKE ?', "%#{url}%")}
   scope :page_rank, proc { |page_rank| where(:page_rank => page_rank) }
-  scope :placement, proc { |placement| where('placement LIKE ?', "%#{placement}%") }
+  scope :placement, proc { |placement| where(:placement => placement) }
   scope :link_name, proc { |name| where('name LIKE ?', "%#{name}%") }
   scope :keyword, proc { |keyword| where('keyword LIKE ?', "%#{keyword}%") }
 
@@ -59,8 +60,8 @@ class Link < ActiveRecord::Base
     payments = Payment.where :payment_method_id => ids
     self.select { |link| payments.include?(link.payments.last) }
   end
-private
 
+  private
   def last_payment
     self.payments.last
   end
