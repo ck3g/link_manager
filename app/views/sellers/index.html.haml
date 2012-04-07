@@ -8,19 +8,16 @@
   %table.table.table-striped
     %thead
       %tr
-        %th
-          = t("views.sellers.id")
-        %th
-          = t("views.sellers.name")
-        %th.actions
-          = t("views.application.actions")
+        %th= t("views.sellers.id")
+        %th= t("views.sellers.name")
+        %th= t(:wm_wallet)
+        %th.actions= t("views.application.actions")
     %tbody
       - @sellers.each do |seller|
         %tr
-          %td
-            = seller.id
-          %td
-            = seller.name
+          %td= seller.id
+          %td= seller.name
+          %td= seller.wm_wallet
           %td.actions
             = link_to t("views.application.edit"), edit_seller_path(seller.id)
             = link_to t("views.application.destroy"), seller, :confirm => t("views.application.are_you_sure"), :method => :delete
