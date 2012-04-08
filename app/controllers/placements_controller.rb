@@ -1,4 +1,6 @@
 class PlacementsController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     @placements = Placement.all
   end
