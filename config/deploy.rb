@@ -37,5 +37,10 @@ namespace :deploy do
   after "deploy:setup", "deploy:setup_config"
   after "deploy:finalize_update", "deploy:symlink_config"
 
+  before "deploy:cold", "deploy:install_bundler"
+  task :install_bundler, :roles => :app do
+    run "type -P bundle &>/dev/null || { gem install bundler --no-ri --no-rdoc; }"
+  end
+
 end
 
