@@ -37,9 +37,8 @@ group :development do
   gem 'capistrano', :require => false
   gem 'capistrano-recipes', :require => false
   gem 'capistrano_colors', :require => false
+  gem 'rvm-capistrano', :require => false
 end
-
-gem 'rvm-capistrano'
 
 group :test do
   gem 'rspec-rails',        '~> 2.7.0'
