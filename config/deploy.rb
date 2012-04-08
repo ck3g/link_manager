@@ -7,7 +7,8 @@ server "78.47.60.11", :web, :app, :db, :primary => true
 set :application, "link_manager"
 set :user, "deploy"
 set :deploy_to, "/home/#{user}/apps/#{application}"
-set :deploy_via, :export
+# set :deploy_via, :remote_cache
+set :deploy_via, :copy
 set :use_sudo, false
 
 set :rvm_ruby_string, "1.9.3@#{application}"
@@ -20,6 +21,7 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
+after "deploy:update_code", "deploy:migrate"
 
 namespace :deploy do
   %w[start stop restart].each do |command|
@@ -30,6 +32,7 @@ namespace :deploy do
   end
 
   task :setup_config, :roles => :app do
+    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/default"
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     run "mkdir -p #{shared_path}/config"
