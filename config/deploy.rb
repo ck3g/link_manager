@@ -1,6 +1,6 @@
 require 'capistrano_colors'
 require 'bundler/capistrano'
-# require 'rvm/capistrano'
+require 'rvm/capistrano'
 
 server "78.47.60.11", :web, :app, :db, :primary => true
 
