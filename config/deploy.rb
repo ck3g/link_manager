@@ -1,14 +1,13 @@
 require 'capistrano_colors'
 require 'bundler/capistrano'
-require 'rvm/capistrano'
+# require 'rvm/capistrano'
 
 server "78.47.60.11", :web, :app, :db, :primary => true
 
 set :application, "link_manager"
 set :user, "deploy"
 set :deploy_to, "/home/#{user}/apps/#{application}"
-# set :deploy_via, :remote_cache
-set :deploy_via, :copy
+set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :rvm_ruby_string, "1.9.3@#{application}"

@@ -28,7 +28,6 @@ group :production do
   # gem "passenger", "~> 3.0.9"
   gem "exception_notification", "~> 2.5.2"
   gem "unicorn", "~> 4.2.1"
-  gem 'rvm-capistrano'
 end
 
 gem 'jquery-rails'
@@ -38,6 +37,7 @@ group :development do
   gem 'capistrano', :require => false
   gem 'capistrano-recipes', :require => false
   gem 'capistrano_colors', :require => false
+  # gem 'rvm-capistrano'
 end
 
 group :test do
