@@ -1,5 +1,6 @@
 require 'capistrano_colors'
 require 'bundler/capistrano'
+require 'rvm/capistrano'
 
 server "78.47.60.11", :web, :app, :db, :primary => true
 
@@ -8,6 +9,8 @@ set :user, "deploy"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :export
 set :use_sudo, false
+
+set :rvm_ruby_string, "1.9.3@#{application}"
 
 set :scm, :git
 set :repository,  "git@github.com:ck3g/link_manager.git"
