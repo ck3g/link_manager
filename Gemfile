@@ -25,8 +25,9 @@ group :assets do
 end
 
 group :production do
-  gem "passenger", "~> 3.0.9"
+  # gem "passenger", "~> 3.0.9"
   gem "exception_notification", "~> 2.5.2"
+  gem "unicorn", "~> 4.2.1"
 end
 
 gem 'jquery-rails'
