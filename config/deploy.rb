@@ -14,7 +14,7 @@ set :rvm_ruby_string, "1.9.3@#{application}"
 
 set :scm, :git
 set :repository,  "git@github.com:ck3g/link_manager.git"
-set :branch, "deploy_to_vps"
+set :branch, "develop"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
