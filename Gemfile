@@ -38,6 +38,7 @@ group :development do
   gem 'capistrano-recipes', :require => false
   gem 'capistrano_colors', :require => false
   gem 'rvm-capistrano', :require => false
+  gem 'rails_best_practices'
 end
 
 group :test do
