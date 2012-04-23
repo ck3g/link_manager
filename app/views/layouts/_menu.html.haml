@@ -3,8 +3,15 @@
     - if user_signed_in?
       %li{ :class => active("links") }
         = link_to t("views.application.links"), links_path
-      %li{ :class => active("sellers") }
-        = link_to t("views.application.sellers"), sellers_path
+
+      %li#menu-sellers.dropdown{ :class => active("sellers") }
+        = link_to "#menu-sellers", :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
+          = t("views.application.sellers")
+          %b.caret
+        %ul.dropdown-menu
+          %li= link_to t("views.application.sellers"), sellers_path
+          %li= link_to t("views.application.seller_origins"), seller_origins_path
+
       %li{ :class => active("payment_methods") }
         = link_to t("views.application.payment_methods"), payment_methods_path
       %li{ :class => active("placements") }
@@ -13,6 +20,7 @@
         = link_to t("views.application.statuses"), statuses_path
       %li{ :class => active("logs") }
         = link_to t("views.application.log"), logs_path
+      %li.divider-vertical
       %li
         = link_to t("auth.sign_out"), destroy_user_session_path, :method => :delete
     - else

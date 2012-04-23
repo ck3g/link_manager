@@ -9,7 +9,7 @@ class StatusesController < ApplicationController
     @status = Status.new
   end
 
-  def edit 
+  def edit
     @status = Status.find params[:id]
   end
 

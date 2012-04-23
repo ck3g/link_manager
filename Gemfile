@@ -13,6 +13,7 @@ gem 'bitmask_attributes'
 gem "formtastic-bootstrap"
 gem "meta-tags", :require => 'meta_tags'
 gem "has_scope", "~> 0.5.1"
+gem "acts_as_commentable"
 gem "bootstrap-sass", "2.0.0"
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :git => 'git://github.com/anjlab/bootstrap-rails.git'
