@@ -19,6 +19,7 @@
           %td= seller.name
           %td= seller.wm_wallet
           %td.actions
+            = link_to t("views.application.show"), seller_path(seller.id)
             = link_to t("views.application.edit"), edit_seller_path(seller.id)
             = link_to t("views.application.destroy"), seller, :confirm => t("views.application.are_you_sure"), :method => :delete
 

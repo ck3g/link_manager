@@ -1,5 +1,6 @@
 class Link < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
+
   belongs_to :user
   has_many :payments
   belongs_to :status

@@ -2,7 +2,7 @@ ru:
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
-  date: 
+  date:
     formats:
       default: "%d.%m.%Y"
   support:
@@ -16,6 +16,12 @@ ru:
         remember_me: "Не выходить из системы"
       status:
         name: Название
+      comment:
+        comment: Комментарий
+      seller_origin:
+        name: Происхождение
+      seller:
+        seller_origin: Происхождение
     errors:
       models:
         payment_method:
@@ -30,7 +36,7 @@ ru:
           attributes:
             url:
               blank: "Ссылка не может быть пустой"
-            page_rank: 
+            page_rank:
               inclusion: "Должно быть в интервале от 1 до 10"
               not_a_number: "Должно быть числом"
             name:
@@ -52,7 +58,11 @@ ru:
           attributes:
             name:
               blank: Не может быть пустым
-  auth: 
+        seller_origin:
+          attributes:
+            name:
+              blank: Не может быть пустым
+  auth:
     sign_in: "Вход"
     sign_out: "Выход"
 
@@ -61,6 +71,7 @@ ru:
       links: "Ссылки"
       payment_methods: "Методы оплаты"
       sellers: "Продавцы"
+      seller_origins: Происхождение
       log: "Журнал"
       actions: "Действие"
       edit: "Ред."
@@ -69,7 +80,7 @@ ru:
       are_you_sure: "Вы уверены?"
       new: "Добавить"
       successfully_created: "Успешно создано"
-      successfully_updated: "Успешно изменено" 
+      successfully_updated: "Успешно изменено"
       wait: "..."
       statuses: Статусы
       placements: Размещение
@@ -128,6 +139,9 @@ ru:
     placements:
       new: "Новое размещение"
       edit: Редактировать размещение
+    seller_origins:
+      new: Новое происхождение
+      edit: Редактировать происхождение
     back_to_links: Назад к просмотру ссылок
   formtastic:
     labels:
@@ -173,4 +187,6 @@ ru:
   wm_wallet: Кошелек ВМ
   back: Назад
   seller_name: Имя
+  comments: Комментарии
+  seller_origins_title: Происхождение продавцов
 
