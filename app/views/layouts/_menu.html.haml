@@ -1,8 +1,14 @@
 %nav
   %ul.nav.pull-right
     - if user_signed_in?
-      %li{ :class => active("links") }
-        = link_to t("views.application.links"), links_path
+      %li#menu-sellers.dropdown{ :class => active("links") }
+        = link_to "#menu-links", :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
+          = t("views.application.links")
+          %b.caret
+        %ul.dropdown-menu
+          %li= link_to t("views.application.links"), links_path
+          %li= link_to t("views.application.categories"), categories_path
+          %li= link_to t("views.application.our_sites"), our_sites_path
 
       %li#menu-sellers.dropdown{ :class => active("sellers") }
         = link_to "#menu-sellers", :class => "dropdown-toggle", :"data-toggle" => "dropdown" do

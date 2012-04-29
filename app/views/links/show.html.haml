@@ -1,4 +1,4 @@
-%h2= title @link.name
+%h2{:class => ("inactive" if @link.inactive?)}= title @link.name
 %table.table.vertical
   %tr
     %th= t("views.links.url")
@@ -18,6 +18,11 @@
   %tr
     %th= t("views.links.seller")
     %td= @link.seller_name
+
+  - if @link.our_site.present?
+    %tr
+      %th= t("views.links.our_site")
+      %td= @link.our_site.name
   %tr
     %th= t("views.links.payment_method")
     %td= @link.payment_method_name

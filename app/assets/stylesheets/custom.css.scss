@@ -93,3 +93,11 @@ table.vertical {
 table.vertical th {
   width: 35%;
 }
+
+tr.inactive {
+  color: #aaa;
+}
+
+h2.inactive {
+  text-decoration: line-through;
+}

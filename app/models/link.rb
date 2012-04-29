@@ -1,10 +1,19 @@
 class Link < ActiveRecord::Base
+  # TODO: Обновление параметров с сохранением истории
+  # TODO: Выбор начальной и конечной даты клендариками или радиобатонами на 3/6/12 месяцев
+  # TODO: Имейлы продавца. При добавлении оплаты, выбирать имейл этого продавца. Дать возможность добавить имейл сразу. Если такой имел уже существует в базе, нужно вывести список продавцов у кого такой имейл есть. Возможность забанить имейл, забаненый имел не показывать в списке при оплате.
+  # TODO: Возможность продлить оплату до определенного срока, за основу взять текущие параметры (цену и т.п.)
+  # TODO: Проверка ссылок. 3 вида. Синие (используются), Красные (Забанены), Зеленые новые.
+  # TODO: Массовое добавление. Поля вряд.
+  #
+  # TODO: Rails Best Practices
   include ActionView::Helpers::DateHelper
 
   belongs_to :user
   has_many :payments
   belongs_to :status
   belongs_to :placement
+  belongs_to :our_site
 
   validates :url, :presence => true
   validates :name, :keyword, :presence => true
@@ -52,14 +61,16 @@ class Link < ActiveRecord::Base
     end
   end
 
-  def self.by_seller(name)
-    payments = Payment.where :seller_id => Seller.where('name LIKE ?', "%#{name}%")
-    self.select { |link| payments.include?(link.payments.last) }
-  end
+  class << self
+    def by_seller(name)
+      payments = Payment.where :seller_id => Seller.where('name LIKE ?', "%#{name}%")
+      self.select { |link| payments.include?(link.payments.last) }
+    end
 
-  def self.by_payment_method(ids)
-    payments = Payment.where :payment_method_id => ids
-    self.select { |link| payments.include?(link.payments.last) }
+    def by_payment_method(ids)
+      payments = Payment.where :payment_method_id => ids
+      self.select { |link| payments.include?(link.payments.last) }
+    end
   end
 
   private

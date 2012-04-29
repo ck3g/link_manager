@@ -10,6 +10,9 @@ ru:
       two_words_connector: "; "
   activerecord:
     attributes:
+      link:
+        our_site: Наш сайт
+        inactive: Неактивна
       user:
         email: "Email"
         password: "Пароль"
@@ -22,6 +25,11 @@ ru:
         name: Происхождение
       seller:
         seller_origin: Происхождение
+      category:
+        name: Название
+      our_site:
+        name: Название
+        category: Категория
     errors:
       models:
         payment_method:
@@ -62,6 +70,16 @@ ru:
           attributes:
             name:
               blank: Не может быть пустым
+        category:
+          attributes:
+            name:
+              blank: Не может быть пустым
+              taken: Категория с таким названием уже существует
+        our_site:
+          attributes:
+            name:
+              blank: Не может быть пустым
+              taken: Категория с таким названием уже существует
   auth:
     sign_in: "Вход"
     sign_out: "Выход"
@@ -84,6 +102,8 @@ ru:
       wait: "..."
       statuses: Статусы
       placements: Размещение
+      categories: Категории
+      our_sites: Наши сайты
     links:
       title: "Ссылки"
       url: "URL"
@@ -103,6 +123,10 @@ ru:
       do_filter: "Фильтровать"
       link_name: Название
       new: Новая ссылка
+      our_site: "Наш сайт"
+      show_inactive: Отображать неактивные
+      hide_inactive: Скрывать неактивные
+      inactive_qm: Неактивна?
     payment_methods:
       title: "Методы оплаты"
       id: "id"
@@ -142,6 +166,12 @@ ru:
     seller_origins:
       new: Новое происхождение
       edit: Редактировать происхождение
+    categories:
+      new: Новая категория
+      edit: Редактировать категорию
+    our_sites:
+      new: Новый сайт
+      edit: Редактировать сайт
     back_to_links: Назад к просмотру ссылок
   formtastic:
     labels:
@@ -189,4 +219,10 @@ ru:
   seller_name: Имя
   comments: Комментарии
   seller_origins_title: Происхождение продавцов
+  categories_title: Категории
+  our_sites_title: Наши сайты
+  category: Категория
+  our_site: Наш сайт
+  inactive_yes: Да
+  inactive_no: Нет
 

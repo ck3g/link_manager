@@ -1,0 +1,23 @@
+%h1
+  = title t(:our_sites_title)
+
+%p
+  = link_to t("views.application.new"), new_our_site_path, :class => "btn"
+
+- if @our_sites.present?
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= t(:id)
+        %th= t(:name)
+        %th= t(:category)
+        %th.actions= t("views.application.actions")
+    %tbody
+      - @our_sites.each do |site|
+        %tr
+          %td= site.id
+          %td= site.name
+          %td= site.category.name
+          %td.actions
+            = link_to t("views.application.edit"), edit_our_site_path(site.id)
+
