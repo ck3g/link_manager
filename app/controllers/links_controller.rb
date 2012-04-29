@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :find_link, :only => [:show, :edit, :update, :destroy]
 
   has_scope :url
   has_scope :page_rank
@@ -17,21 +18,12 @@ class LinksController < ApplicationController
     set_meta_tags :title => I18n.t(:links_title)
   end
 
-  def show
-    @link = Link.find params[:id]
-  end
-
   def new
     @link = Link.new
   end
 
-  def edit
-    @link = Link.find params[:id]
-  end
-
   def create
-    @link = Link.new params[:link]
-    @link.user_id = current_user.id
+    @link = current_user.links.build params[:link]
     if @link.save
       Log.user_creates_link @link
       redirect_to new_link_payment_path(@link), :notice => t("views.application.successfully_created")
@@ -41,7 +33,6 @@ class LinksController < ApplicationController
   end
 
   def update
-    @link = Link.find params[:id]
     if @link.update_attributes params[:link]
       redirect_to link_path(@link), :notice => t("views.application.successfully_updated")
     else
@@ -50,7 +41,6 @@ class LinksController < ApplicationController
   end
 
   def destroy
-    @link = Link.find params[:id]
     @link.destroy
     redirect_to links_path
   end
@@ -60,6 +50,11 @@ class LinksController < ApplicationController
       @links_to_check = params[:links].strip.split("\n").map(&:strip).compact.reject(&:blank?)
       @links = Link.all.select { |link| @links_to_check.include? link.url }.collect { |link| link.url }
     end
+  end
+
+  private
+  def find_link
+    @link = Link.find params[:id]
   end
 
 end

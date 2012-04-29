@@ -1,5 +1,6 @@
 class StatusesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :find_status, :only => [:edit, :update, :destroy]
 
   def index
     @statuses = Status.all
@@ -7,10 +8,6 @@ class StatusesController < ApplicationController
 
   def new
     @status = Status.new
-  end
-
-  def edit
-    @status = Status.find params[:id]
   end
 
   def create
@@ -23,7 +20,6 @@ class StatusesController < ApplicationController
   end
 
   def update
-    @status = Status.find params[:id]
     if @status.update_attributes params[:status]
       redirect_to statuses_path, :notice => t("views.application.successfully_updated")
     else
@@ -32,8 +28,12 @@ class StatusesController < ApplicationController
   end
 
   def destroy
-    @status = Status.find params[:id]
     @status.destroy
     redirect_to statuses_path
+  end
+
+  private
+  def find_status
+    @status = Status.find params[:id]
   end
 end
