@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: 028a81746f1f8958df59dfb068d57f2932ef767d
+  revision: 573f6527fab36de4f6014c71401f1c40635cb499
   specs:
-    anjlab-bootstrap-rails (2.0.2.1)
+    anjlab-bootstrap-rails (2.0.3.2)
       railties (>= 3.0)
       sass
 
@@ -36,8 +36,7 @@ GEM
     activesupport (3.2.3)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    acts_as_commentable (3.0.1)
-    arel (2.2.1)
+    addressable (2.2.7)
     arel (3.0.2)
     awesome_print (1.0.2)
     bcrypt-ruby (3.0.1)
@@ -45,7 +44,7 @@ GEM
       activerecord (~> 3.0)
     bootstrap-sass (2.0.0)
     builder (3.0.0)
-    capistrano (2.11.2)
+    capistrano (2.12.0)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
@@ -64,7 +63,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    childprocess (0.3.1)
+    childprocess (0.3.2)
       ffi (~> 1.0.6)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -72,7 +71,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.2.0)
+    coffee-script-source (1.3.1)
     colored (1.2)
     devise (1.5.3)
       bcrypt-ruby (~> 3.0)
@@ -82,7 +81,7 @@ GEM
     erubis (2.7.0)
     exception_notification (2.5.2)
       actionmailer (>= 3.0.4)
-    execjs (1.3.0)
+    execjs (1.3.1)
       multi_json (~> 1.0)
     factory_girl (2.2.0)
       activesupport
@@ -116,12 +115,14 @@ GEM
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
-    json (1.6.6)
+    json (1.7.0)
     kaminari (0.12.4)
       rails (>= 3.0.0)
     kgio (2.7.4)
     libnotify (0.5.9)
     libv8 (3.3.10.4)
+    libwebsocket (0.1.3)
+      addressable
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -129,7 +130,7 @@ GEM
     meta-tags (1.2.6)
       actionpack
     mime-types (1.18)
-    multi_json (1.2.0)
+    multi_json (1.3.4)
     mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -174,7 +175,7 @@ GEM
       thor (~> 0.14.6)
     raindrops (0.8.0)
     rake (0.9.2.2)
-    rb-fsevent (0.9.0)
+    rb-fsevent (0.9.1)
     rb-inotify (0.8.8)
       ffi (>= 0.5.0)
     rdoc (3.12)
@@ -192,22 +193,23 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.7.0)
-    rubyzip (0.9.7)
-    rvm-capistrano (1.0.2)
+    rubyzip (0.9.8)
+    rvm-capistrano (1.1.0)
       capistrano (>= 2.0.0)
-    sass (3.1.15)
+    sass (3.1.16)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.20.0)
+    selenium-webdriver (2.21.2)
       childprocess (>= 0.2.5)
       ffi (~> 1.0)
+      libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
     sexp_processor (3.2.0)
     spork (1.0.0rc2)
-    sprockets (2.1.2)
+    sprockets (2.1.3)
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
@@ -218,7 +220,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.32)
+    tzinfo (0.3.33)
     uglifier (1.2.4)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
@@ -235,7 +237,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_commentable
   anjlab-bootstrap-rails!
   bitmask_attributes
   bootstrap-sass (= 2.0.0)
@@ -247,6 +248,7 @@ DEPENDENCIES
   devise (~> 1.5.2)
   exception_notification (~> 2.5.2)
   factory_girl_rails (~> 1.3.0)
+  formtastic (~> 2.1.1)
   formtastic-bootstrap
   growl (~> 1.0.3)
   guard-bundler (~> 0.1.3)
