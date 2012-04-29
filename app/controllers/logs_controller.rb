@@ -5,6 +5,5 @@ class LogsController < ApplicationController
 
   def index
     @logs = apply_scopes(Log).includes(:user, :link).order('created_at DESC')
-    #@logs = Log.includes(:user, :link).order('created_at DESC')
   end
 end
