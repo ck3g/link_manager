@@ -8,6 +8,11 @@ class Payment < ActiveRecord::Base
   validates :paid_at, :next_payment_at, :presence => true
   validate :payment_dates
 
+  delegate :name, :to => :seller, :prefix => true
+  delegate :name, :to => :payment_method, :prefix => true
+  delegate :email, :to => :user, :prefix => true
+  delegate :url, :to => :link, :prefix => true
+
   def per_month
     self.amount / ((self.next_payment_at.to_date - self.paid_at.to_date).to_i + 1) * 30 if self.amount
   end

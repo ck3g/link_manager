@@ -19,6 +19,10 @@ class Link < ActiveRecord::Base
   validates :name, :keyword, :presence => true
   validates :page_rank, :numericality => true, :inclusion => { :in => 1..10 }
 
+  delegate :name, :to => :placement, :prefix => true
+  delegate :name, :to => :our_site, :prefix => true
+  delegate :email, :to => :user, :prefix => true
+
   scope :url, proc { |url| where('url LIKE ?', "%#{url}%")}
   scope :page_rank, proc { |page_rank| where(:page_rank => page_rank) }
   scope :placement, proc { |placement| where(:placement => placement) }
