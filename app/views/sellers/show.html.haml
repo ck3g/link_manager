@@ -7,23 +7,3 @@
     %th= t(:wm_wallet)
     %td= @seller.wm_wallet
 
-- if @comments.present?
-  %h3= t(:comments)
-  #comments
-    - @comments.each do |comment|
-      .comment
-        .user-name
-          %span.email
-            = comment.user.email
-          at
-          %span.date
-            = l comment.created_at
-        .body
-          = simple_format comment.comment
-
-= semantic_form_for [@seller, Comment.new]  do |f|
-  = f.inputs do
-    = f.input :comment
-  = f.buttons :class => "form-actions" do
-    = f.commit_button :button_html => { :class => 'btn btn-primary', :disable_with => t("views.application.wait") }
-
