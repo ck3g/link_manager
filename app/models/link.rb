@@ -15,6 +15,8 @@ class Link < ActiveRecord::Base
   belongs_to :placement
   belongs_to :our_site
 
+  attr_protected :user_id
+
   validates :url, :presence => true
   validates :name, :keyword, :presence => true
   validates :page_rank, :numericality => true, :inclusion => { :in => 1..10 }

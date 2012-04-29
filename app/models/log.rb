@@ -2,6 +2,8 @@ class Log < ActiveRecord::Base
   belongs_to :user
   belongs_to :link
 
+  attr_protected :user_id, :link_id
+
   delegate :email, :to => :user, :prefix => true
   delegate :name, :to => :link, :prefix => true
 
