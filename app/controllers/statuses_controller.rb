@@ -1,4 +1,6 @@
 class StatusesController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     @statuses = Status.all
   end
@@ -7,7 +9,7 @@ class StatusesController < ApplicationController
     @status = Status.new
   end
 
-  def edit 
+  def edit
     @status = Status.find params[:id]
   end
 

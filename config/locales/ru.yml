@@ -2,7 +2,7 @@ ru:
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
-  date: 
+  date:
     formats:
       default: "%d.%m.%Y"
   support:
@@ -10,12 +10,26 @@ ru:
       two_words_connector: "; "
   activerecord:
     attributes:
+      link:
+        our_site: Наш сайт
+        inactive: Неактивна
       user:
         email: "Email"
         password: "Пароль"
         remember_me: "Не выходить из системы"
       status:
         name: Название
+      comment:
+        comment: Комментарий
+      seller_origin:
+        name: Происхождение
+      seller:
+        seller_origin: Происхождение
+      category:
+        name: Название
+      our_site:
+        name: Название
+        category: Категория
     errors:
       models:
         payment_method:
@@ -30,7 +44,7 @@ ru:
           attributes:
             url:
               blank: "Ссылка не может быть пустой"
-            page_rank: 
+            page_rank:
               inclusion: "Должно быть в интервале от 1 до 10"
               not_a_number: "Должно быть числом"
             name:
@@ -52,7 +66,21 @@ ru:
           attributes:
             name:
               blank: Не может быть пустым
-  auth: 
+        seller_origin:
+          attributes:
+            name:
+              blank: Не может быть пустым
+        category:
+          attributes:
+            name:
+              blank: Не может быть пустым
+              taken: Категория с таким названием уже существует
+        our_site:
+          attributes:
+            name:
+              blank: Не может быть пустым
+              taken: Категория с таким названием уже существует
+  auth:
     sign_in: "Вход"
     sign_out: "Выход"
 
@@ -61,6 +89,7 @@ ru:
       links: "Ссылки"
       payment_methods: "Методы оплаты"
       sellers: "Продавцы"
+      seller_origins: Происхождение
       log: "Журнал"
       actions: "Действие"
       edit: "Ред."
@@ -69,9 +98,12 @@ ru:
       are_you_sure: "Вы уверены?"
       new: "Добавить"
       successfully_created: "Успешно создано"
-      successfully_updated: "Успешно изменено" 
+      successfully_updated: "Успешно изменено"
       wait: "..."
       statuses: Статусы
+      placements: Размещение
+      categories: Категории
+      our_sites: Наши сайты
     links:
       title: "Ссылки"
       url: "URL"
@@ -91,6 +123,10 @@ ru:
       do_filter: "Фильтровать"
       link_name: Название
       new: Новая ссылка
+      our_site: "Наш сайт"
+      show_inactive: Отображать неактивные
+      hide_inactive: Скрывать неактивные
+      inactive_qm: Неактивна?
     payment_methods:
       title: "Методы оплаты"
       id: "id"
@@ -124,6 +160,18 @@ ru:
     statuses:
       new: "Новый статус"
       edit: "Редактировать статус"
+    placements:
+      new: "Новое размещение"
+      edit: Редактировать размещение
+    seller_origins:
+      new: Новое происхождение
+      edit: Редактировать происхождение
+    categories:
+      new: Новая категория
+      edit: Редактировать категорию
+    our_sites:
+      new: Новый сайт
+      edit: Редактировать сайт
     back_to_links: Назад к просмотру ссылок
   formtastic:
     labels:
@@ -159,10 +207,22 @@ ru:
   next_payment_at: Дата следующей оплаты
   links_title: Ссылки
   statuses_title: Статусы
-  status_id: id
-  status_name: Название
+  id: id
+  name: Название
   status: Статус
+  placements_title: Размещение
   email: Email
   password: Пароль
   remember_me: "Не выходить из системы"
+  wm_wallet: Кошелек ВМ
+  back: Назад
+  seller_name: Имя
+  comments: Комментарии
+  seller_origins_title: Происхождение продавцов
+  categories_title: Категории
+  our_sites_title: Наши сайты
+  category: Категория
+  our_site: Наш сайт
+  inactive_yes: Да
+  inactive_no: Нет
 

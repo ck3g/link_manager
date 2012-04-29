@@ -16,8 +16,18 @@
     color: #c00;
     margin: 0.5em 0 0 15%;
   }
+
+  .stringish input {
+    width: 25%;
+  }
+
+  .boolean {
+    div.input {
+      ul {
+        list-style: none;
+        margin-left: 0;
+      }
+    }
+  }
 }
 
-.formtastic .stringish input {
-  width: 25%;
-}

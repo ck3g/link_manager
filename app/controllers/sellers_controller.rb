@@ -5,6 +5,11 @@ class SellersController < ApplicationController
     @sellers = Seller.all
   end
 
+  def show
+    @seller = Seller.find(params[:id])
+    @comments = @seller.comments.recent.all
+  end
+
   def new
     @seller = Seller.new
   end
@@ -35,5 +40,9 @@ class SellersController < ApplicationController
     @seller = Seller.find params[:id]
     @seller.destroy
     redirect_to sellers_path
+  end
+
+  def create_comment
+
   end
 end

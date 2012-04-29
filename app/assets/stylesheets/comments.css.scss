@@ -1,0 +1,29 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#comments {
+  margin-bottom: 30px;
+  .comment {
+    margin: 10px;
+    .user-name {
+      span.email {
+        font-weight: bold;
+      }
+      span.date {
+        font-weight: bold;
+      }
+    }
+
+    .body {
+      padding: 10px;
+    }
+  }
+}
+
+form.comment {
+  textarea {
+    height: 100px;
+    width: 400px;
+  }
+}

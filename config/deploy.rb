@@ -1,41 +1,56 @@
 require 'capistrano_colors'
 require 'bundler/capistrano'
+require 'rvm/capistrano'
+
+server "78.47.60.11", :web, :app, :db, :primary => true
 
 set :application, "link_manager"
-set :repository,  "git@github.com:ck3g/link_manager.git"
-set :domain, "homebugh.info"
-
-set :scm, :git
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-
-set :user, "kalastiuz"
-
-set :deploy_to, "/home/kalastiuz/rails/#{application}"
-set :deploy_via, :export
-
+set :user, "deploy"
+set :deploy_to, "/home/#{user}/apps/#{application}"
+set :deploy_via, :remote_cache
 set :use_sudo, false
 
-role :web, domain                          # Your HTTP server, Apache/etc
-role :app, domain                          # This may be the same as your `Web` server
-role :db,  domain, :primary => true # This is where Rails migrations will run
+set :rvm_ruby_string, "1.9.3@#{application}"
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+set :scm, :git
+set :repository,  "git@github.com:ck3g/link_manager.git"
+set :branch, "develop"
 
-# If you are using Passenger mod_rails uncomment this:
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+
+after "deploy", "deploy:cleanup" # keep only the last 5 releases
+after "deploy:update_code", "deploy:migrate"
+
 namespace :deploy do
-  task :after_symlink do
-    run "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
+  %w[start stop restart].each do |command|
+    desc "#{command} unicorn server"
+    task command, :roles => :app, :except => {:no_release => true} do
+      run "/etc/init.d/unicorn_#{application} #{command}"
+    end
   end
-#   task :start do ; end
-#   task :stop do ; end
-   task :restart, :roles => :app, :except => { :no_release => true } do
-     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-   end
-   
-   desc "Populates the Production Database"
-   task :seed do
-     puts "\n\n=== Populating the Production Database! ===\n\n"
-     run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=production"
-   end
+
+  task :setup_config, :roles => :app do
+    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/default"
+    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
+    sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
+    run "mkdir -p #{shared_path}/config"
+    put File.read("config/database.yml.example"), "#{shared_path}/config/database.yml"
+    put File.read("config/mail.yml.example"), "#{shared_path}/config/mail.yml"
+    puts "Now edit the config files in #{shared_path}"
+  end
+  after "deploy:setup", "deploy:setup_config"
+
+  task :symlink_config, :roles => :app do
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/mail.yml #{release_path}/config/mail.yml"
+  end
+  after "deploy:finalize_update", "deploy:symlink_config"
+
+  before "deploy:cold", "deploy:install_bundler"
+  task :install_bundler, :roles => :app do
+    run "type -P bundle &>/dev/null || { gem install bundler --no-ri --no-rdoc; }"
+  end
+
 end
+

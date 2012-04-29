@@ -1,8 +1,19 @@
 class Link < ActiveRecord::Base
+  # TODO: Обновление параметров с сохранением истории
+  # TODO: Выбор начальной и конечной даты клендариками или радиобатонами на 3/6/12 месяцев
+  # TODO: Имейлы продавца. При добавлении оплаты, выбирать имейл этого продавца. Дать возможность добавить имейл сразу. Если такой имел уже существует в базе, нужно вывести список продавцов у кого такой имейл есть. Возможность забанить имейл, забаненый имел не показывать в списке при оплате.
+  # TODO: Возможность продлить оплату до определенного срока, за основу взять текущие параметры (цену и т.п.)
+  # TODO: Проверка ссылок. 3 вида. Синие (используются), Красные (Забанены), Зеленые новые.
+  # TODO: Массовое добавление. Поля вряд.
+  #
+  # TODO: Rails Best Practices
   include ActionView::Helpers::DateHelper
+
   belongs_to :user
   has_many :payments
   belongs_to :status
+  belongs_to :placement
+  belongs_to :our_site
 
   validates :url, :presence => true
   validates :name, :keyword, :presence => true
@@ -10,7 +21,7 @@ class Link < ActiveRecord::Base
 
   scope :url, proc { |url| where('url LIKE ?', "%#{url}%")}
   scope :page_rank, proc { |page_rank| where(:page_rank => page_rank) }
-  scope :placement, proc { |placement| where('placement LIKE ?', "%#{placement}%") }
+  scope :placement, proc { |placement| where(:placement => placement) }
   scope :link_name, proc { |name| where('name LIKE ?', "%#{name}%") }
   scope :keyword, proc { |keyword| where('keyword LIKE ?', "%#{keyword}%") }
 
@@ -50,17 +61,19 @@ class Link < ActiveRecord::Base
     end
   end
 
-  def self.by_seller(name)
-    payments = Payment.where :seller_id => Seller.where('name LIKE ?', "%#{name}%")
-    self.select { |link| payments.include?(link.payments.last) }
+  class << self
+    def by_seller(name)
+      payments = Payment.where :seller_id => Seller.where('name LIKE ?', "%#{name}%")
+      self.select { |link| payments.include?(link.payments.last) }
+    end
+
+    def by_payment_method(ids)
+      payments = Payment.where :payment_method_id => ids
+      self.select { |link| payments.include?(link.payments.last) }
+    end
   end
 
-  def self.by_payment_method(ids)
-    payments = Payment.where :payment_method_id => ids
-    self.select { |link| payments.include?(link.payments.last) }
-  end
-private
-
+  private
   def last_payment
     self.payments.last
   end

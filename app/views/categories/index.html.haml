@@ -1,0 +1,21 @@
+%h1
+  = title t(:categories_title)
+
+%p
+  = link_to t("views.application.new"), new_category_path, :class => "btn"
+
+- if @categories.present?
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= t(:id)
+        %th= t(:name)
+        %th.actions= t("views.application.actions")
+    %tbody
+      - @categories.each do |category|
+        %tr
+          %td= category.id
+          %td= category.name
+          %td.actions
+            = link_to t("views.application.edit"), edit_category_path(category.id)
+            =# link_to t("views.application.destroy"), category, :confirm => t("views.application.are_you_sure"), :method => :delete

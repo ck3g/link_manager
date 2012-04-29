@@ -1,10 +1,14 @@
 LinkManager::Application.routes.draw do
-  resources :payment_methods, :sellers, :logs, :statuses
+  resources :payment_methods, :logs, :statuses, :placements, :seller_origins, :categories, :our_sites
 
   resources :links do
     resources :payments
     get 'check', :on => :collection
     post 'check', :on => :collection
+  end
+
+  resources :sellers do
+    resources :comments
   end
 
 

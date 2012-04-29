@@ -1,0 +1,2 @@
+module SellerOriginsHelper
+end

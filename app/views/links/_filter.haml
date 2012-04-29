@@ -7,7 +7,13 @@
         %label.control-label{ :for => field }
           = t("views.links.#{field}")
         .controls
-          = text_field_tag field, params[field], :class => "input-xlarge"
+          - if field == :placement
+            - Placement.all.each do |placement|
+              - checked = params[:placement].present? && params[:placement].include?(placement.id.to_s)
+              = check_box_tag 'placement[]', placement.id, checked, :id => dom_id(placement)
+              = label_tag dom_id(placement), placement.name, :class => "checkbox inline"
+          - else
+            = text_field_tag field, params[field], :class => "input-xlarge"
 
     - if PaymentMethod.all.present?
       .control-group

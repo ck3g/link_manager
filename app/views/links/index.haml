@@ -1,6 +1,10 @@
 %p
   = link_to t("views.application.new"), new_link_path, :class => "btn"
   = link_to t("views.links.check"), check_links_path, :class => "btn"
+  - if params[:inactive].blank?
+    = link_to t("views.links.show_inactive"), links_path(:inactive => true), :class => "btn btn-info"
+  - else
+    = link_to t("views.links.hide_inactive"), links_path, :class => "btn btn-info"
   = link_to "#", :id => :filter, :class => "btn", :remote => true do
     %i.icon-search
     = t("views.links.filter")
@@ -25,10 +29,10 @@
           %th.actions= t("views.application.actions")
       %tbody
         - @links.each do |link|
-          %tr
+          %tr{:class => ("inactive" if link.inactive?)}
             %td= link.url
             %td= link.page_rank
-            %td= link.placement
+            %td= link.placement.name
             %td= link.name
             %td= link.keyword
             %td= link.seller_name
@@ -36,12 +40,12 @@
             %td= link.days_left
             %td= link.status_name
             %td.actions
-              = link_to t("views.links.payments"), link_payments_path(link.id) 
-              = link_to t("views.application.show"), link_path(link.id) 
+              = link_to t("views.links.payments"), link_payments_path(link.id)
+              = link_to t("views.application.show"), link_path(link.id)
               = link_to t("views.application.edit"), edit_link_path(link.id)
               = link_to t("views.application.destroy"), link, :confirm => t("views.application.are_you_sure"), :method => :delete
   - else
-    %p 
+    %p
       - if params[:filter].present?
         = t(:filter_results_is_empty)
         = link_to t(:clear_filter), links_path

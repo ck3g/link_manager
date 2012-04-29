@@ -1,0 +1,22 @@
+%h1
+  = title t(:seller_origins_title)
+
+%p
+  = link_to t("views.application.new"), new_seller_origin_path, :class => "btn"
+
+- if @seller_origins.present?
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= t(:id)
+        %th= t(:name)
+        %th.actions= t("views.application.actions")
+    %tbody
+      - @seller_origins.each do |so|
+        %tr
+          %td= so.id
+          %td= so.name
+          %td.actions
+            = link_to t("views.application.edit"), edit_seller_origin_path(so.id)
+            = link_to t("views.application.destroy"), so, :confirm => t("views.application.are_you_sure"), :method => :delete
+

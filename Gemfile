@@ -1,41 +1,45 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.2.3'
 
 gem 'mysql2'
 
 gem 'json'
 
-gem "haml", "~> 3.1.3"
+gem "haml", "~> 3.1.4"
 gem "kaminari", "~> 0.12.4"
 gem "devise", "~> 1.5.2"
 gem 'bitmask_attributes'
 gem "formtastic-bootstrap"
 gem "meta-tags", :require => 'meta_tags'
 gem "has_scope", "~> 0.5.1"
+gem "acts_as_commentable"
 gem "bootstrap-sass", "2.0.0"
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :git => 'git://github.com/anjlab/bootstrap-rails.git'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'sass-rails',   '~> 3.2.5'
+  gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.0.3'
   gem "therubyracer", "~> 0.9.8" #ExecJS runtime
 end
 
 group :production do
-  gem "passenger", "~> 3.0.9"
+  # gem "passenger", "~> 3.0.9"
   gem "exception_notification", "~> 2.5.2"
+  gem "unicorn", "~> 4.2.1"
 end
 
 gem 'jquery-rails'
 
 group :development do
-  gem "rails-dev-tweaks", "~> 0.5.1"
+  # gem "rails-dev-tweaks", "~> 0.6.1"
   gem 'capistrano', :require => false
   gem 'capistrano-recipes', :require => false
   gem 'capistrano_colors', :require => false
+  gem 'rvm-capistrano', :require => false
+  gem 'rails_best_practices'
 end
 
 group :test do
