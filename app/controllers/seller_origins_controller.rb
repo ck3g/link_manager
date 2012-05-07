@@ -15,7 +15,7 @@ class SellerOriginsController < ApplicationController
     if @seller_origin.save
       redirect_to seller_origins_path, :notice => t("views.application.successfully_created")
     else
-      render :action => "new"
+      render "new"
     end
   end
 
@@ -23,7 +23,7 @@ class SellerOriginsController < ApplicationController
     if @seller_origin.update_attributes params[:seller_origin]
       redirect_to seller_origins_path, :notice => t("views.application.successfully_updated")
     else
-      render :action => "edit"
+      render "edit"
     end
   end
 

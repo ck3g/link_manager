@@ -18,7 +18,7 @@ class PlacementsController < ApplicationController
     if @placement.save
       redirect_to placements_path, :notice => t("views.application.successfully_created")
     else
-      render :action => "new"
+      render "new"
     end
   end
 
@@ -27,7 +27,7 @@ class PlacementsController < ApplicationController
     if @status.update_attributes params[:placement]
       redirect_to placements_path, :notice => t("views.application.successfully_updated")
     else
-      render :action => "edit"
+      render "edit"
     end
   end
 

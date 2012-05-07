@@ -18,7 +18,7 @@ class PaymentsController < ApplicationController
       Log.user_creates_payment @payment
       redirect_to link_payments_path(@link.id), :notice => t("views.application.successfully_created")
     else
-      render :action => "new", :link_id => @link.id
+      render "new", :link_id => @link.id
     end
   end
 
@@ -26,7 +26,7 @@ class PaymentsController < ApplicationController
     if @payment.update_attributes params[:payment]
       redirect_to link_payments_path(@link.id), :notice => t("views.application.successfully_updated")
     else
-      render :action => "edit", :link_id => @link.id
+      render "edit", :link_id => @link.id
     end
   end
 

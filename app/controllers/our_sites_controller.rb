@@ -18,7 +18,7 @@ class OurSitesController < ApplicationController
     if @our_site.save
       redirect_to our_sites_path, :notice => t("views.application.successfully_created")
     else
-      render :action => "new"
+      render "new"
     end
   end
 
@@ -27,7 +27,7 @@ class OurSitesController < ApplicationController
     if @our_site.update_attributes params[:our_site]
       redirect_to our_sites_path, :notice => t("views.application.successfully_updated")
     else
-      render :action => "edit"
+      render "edit"
     end
   end
 end

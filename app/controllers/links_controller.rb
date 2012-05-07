@@ -28,7 +28,7 @@ class LinksController < ApplicationController
       Log.user_creates_link @link
       redirect_to new_link_payment_path(@link), :notice => t("views.application.successfully_created")
     else
-      render :action => "new"
+      render "new"
     end
   end
 
@@ -36,7 +36,7 @@ class LinksController < ApplicationController
     if @link.update_attributes params[:link]
       redirect_to link_path(@link), :notice => t("views.application.successfully_updated")
     else
-      render :action => "edit"
+      render "edit"
     end
   end
 

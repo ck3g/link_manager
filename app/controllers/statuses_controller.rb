@@ -15,7 +15,7 @@ class StatusesController < ApplicationController
     if @status.save
       redirect_to statuses_path, :notice => t("views.application.successfully_created")
     else
-      render :action => "new"
+      render "new"
     end
   end
 
@@ -23,7 +23,7 @@ class StatusesController < ApplicationController
     if @status.update_attributes params[:status]
       redirect_to statuses_path, :notice => t("views.application.successfully_updated")
     else
-      render :action => "edit"
+      render "edit"
     end
   end
 

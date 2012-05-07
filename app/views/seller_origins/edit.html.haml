@@ -1,4 +1,4 @@
 %h1
   = title "#{t("views.seller_origins.edit")}: #{@seller_origin.name}"
 
-= render :partial => "form"
+= render "form", :seller_origin => @seller_origin
