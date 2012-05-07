@@ -15,9 +15,15 @@ class Link < ActiveRecord::Base
   belongs_to :placement
   belongs_to :our_site
 
+  attr_protected :user_id
+
   validates :url, :presence => true
   validates :name, :keyword, :presence => true
   validates :page_rank, :numericality => true, :inclusion => { :in => 1..10 }
+
+  delegate :name, :to => :placement, :prefix => true
+  delegate :name, :to => :our_site, :prefix => true
+  delegate :email, :to => :user, :prefix => true
 
   scope :url, proc { |url| where('url LIKE ?', "%#{url}%")}
   scope :page_rank, proc { |page_rank| where(:page_rank => page_rank) }

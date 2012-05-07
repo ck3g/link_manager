@@ -1,7 +1,7 @@
 .sign_in
   %h2
     = t("auth.sign_in")
-  
+
   = form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "well form-inline") do |f|
     %div
       = f.email_field :email, :placeholder => t(:email)

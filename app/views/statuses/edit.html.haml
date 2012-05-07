@@ -1,4 +1,4 @@
 %h1
   = title "#{t("views.statuses.edit")}: #{@status.name}"
 
-= render :partial => "form"
+= render "form", :status => @status

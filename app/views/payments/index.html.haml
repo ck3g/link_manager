@@ -20,8 +20,8 @@
       - @payments.each do |payment|
         %tr
           %td= payment.id
-          %td= payment.seller.name
-          %td= payment.payment_method.name
+          %td= payment.seller_name
+          %td= payment.payment_method_name
           %td= l payment.paid_at.to_date
           %td= l payment.next_payment_at.to_date
           %td= to_currency payment.amount

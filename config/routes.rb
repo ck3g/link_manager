@@ -1,17 +1,16 @@
 LinkManager::Application.routes.draw do
-  resources :payment_methods, :logs, :statuses, :placements, :seller_origins, :categories, :our_sites
+  resources :payment_methods, :statuses, :placements, :seller_origins, :categories, :our_sites, :only => [:new, :edit, :create, :update, :destroy, :index]
+  resources :logs, :only => [:index]
 
   resources :links do
-    resources :payments
+    resources :payments, :only => [:new, :create, :update, :destroy, :index]
     get 'check', :on => :collection
     post 'check', :on => :collection
   end
 
   resources :sellers do
-    resources :comments
+    resources :comments, :only => [:create]
   end
-
-
 
   devise_for :users
 

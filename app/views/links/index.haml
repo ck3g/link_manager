@@ -10,7 +10,7 @@
     = t("views.links.filter")
 
 #filter-wrapper
-  = render :partial => "filter"
+  = render "filter"
 
 .sideleft
   - if @links.present?
@@ -32,7 +32,7 @@
           %tr{:class => ("inactive" if link.inactive?)}
             %td= link.url
             %td= link.page_rank
-            %td= link.placement.name
+            %td= link.placement_name
             %td= link.name
             %td= link.keyword
             %td= link.seller_name
