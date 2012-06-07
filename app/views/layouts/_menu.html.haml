@@ -1,6 +1,14 @@
-%nav
-  %ul.nav.pull-right
-    - if user_signed_in?
+.container-fluid
+  - if user_signed_in?
+    .btn-group.pull-right
+      = link_to "#", :class => "btn dropdown-toggle", :data => { :toggle => "dropdown" } do
+        %i.icon-user
+        = current_user.email
+        %span.caret
+      %ul.dropdown-menu
+        %li.divider
+        %li= link_to t("auth.sign_out"), destroy_user_session_path, :method => :delete
+    %ul.nav.pull-right
       %li#menu-links.dropdown{ :class => active("links") }
         = link_to "#menu-links", :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
           = t("views.application.links")
@@ -27,7 +35,7 @@
       %li{ :class => active("logs") }
         = link_to t("views.application.log"), logs_path
       %li.divider-vertical
-      %li
-        = link_to t("auth.sign_out"), destroy_user_session_path, :method => :delete
-    - else
+
+  - else
+    %ul.nav.pull-right
       %li= link_to t("auth.sign_in"), new_user_session_path

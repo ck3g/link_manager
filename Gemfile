@@ -14,7 +14,7 @@ gem "formtastic", "~> 2.1.1"
 gem "formtastic-bootstrap"
 gem "meta-tags", :require => 'meta_tags'
 gem "has_scope", "~> 0.5.1"
-gem "bootstrap-sass", "2.0.0"
+gem "bootstrap-sass"
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :git => 'git://github.com/anjlab/bootstrap-rails.git'
 

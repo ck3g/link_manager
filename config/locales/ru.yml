@@ -92,6 +92,7 @@ ru:
       seller_origins: Происхождение
       log: "Журнал"
       actions: "Действие"
+      moderate: Активировать
       edit: "Ред."
       show: "Просм."
       destroy: "Удал."
@@ -225,4 +226,5 @@ ru:
   our_site: Наш сайт
   inactive_yes: Да
   inactive_no: Нет
+  unmoderated_payments_count: Количество неактивных оплат
 

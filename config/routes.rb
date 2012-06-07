@@ -3,7 +3,9 @@ LinkManager::Application.routes.draw do
   resources :logs, :only => [:index]
 
   resources :links do
-    resources :payments, :only => [:new, :create, :update, :destroy, :index]
+    resources :payments do
+      post :moderate, :on => :member
+    end
     get 'check', :on => :collection
     post 'check', :on => :collection
   end
