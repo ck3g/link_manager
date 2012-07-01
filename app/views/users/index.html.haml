@@ -1,0 +1,27 @@
+%h1= t(:user_management)
+
+%p
+  = link_to t("views.application.new"), new_user_path, :class => "btn"
+
+.sideleft
+  - if @users.present?
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= User.human_attribute_name(:id)
+          %th= User.human_attribute_name(:email)
+          %th= User.human_attribute_name(:role)
+          %th.actions= t("views.application.actions")
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.id
+            %td= user.email
+            %td= t("activerecord.values.user.roles.#{user.role.to_s}")
+            %td
+              = link_to t("views.application.edit"), edit_user_path(user), :class => "btn"
+              - unless user == current_user
+                = link_to user, :method => :delete, :confirm => t("views.application.are_you_sure"), :class => 'btn btn-danger' do
+                  %i.icon-trash.icon-white
+                  = t("views.application.destroy")
+

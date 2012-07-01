@@ -15,6 +15,9 @@ class Payment < ActiveRecord::Base
   delegate :email, :to => :user, :prefix => true
   delegate :url, :to => :link, :prefix => true
 
+  scope :moderated, lambda { where(:moderated => true) }
+  scope :unmoderated, lambda { where(:moderated => false) }
+
   def per_month
     self.amount / ((self.next_payment_at.to_date - self.paid_at.to_date).to_i + 1) * 30 if self.amount
   end

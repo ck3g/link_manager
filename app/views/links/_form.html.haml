@@ -9,7 +9,8 @@
     #link_our_our_site_input.select.crearfix.optional
       = label_tag 'link_our_site_id', t(:our_site)
       .input
-        = grouped_collection_select :link, :our_site_id, Category.all, :our_sites, :name, :id, :name, :include_blank => true
+        = grouped_collection_select :link, :our_site_id, Category.visible_for(current_user), :our_sites, :name, :id, :name, :include_blank => true
+
     = f.input :inactive, :input_html => { :class => "checkbox inline" }
   = f.buttons :class => "form-actions" do
     = f.commit_button :button_html => { :class => 'btn btn-primary', :disable_with => t("views.application.wait") }

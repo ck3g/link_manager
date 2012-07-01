@@ -1,6 +1,9 @@
 %p
   = link_to t("views.application.new"), new_link_path, :class => "btn"
-  = link_to t("views.links.check"), check_links_path, :class => "btn"
+
+  - if can? :check, Link
+    = link_to t("views.links.check"), check_links_path, :class => "btn"
+
   - if params[:inactive].blank?
     = link_to t("views.links.show_inactive"), links_path(:inactive => true), :class => "btn btn-info"
   - else
@@ -26,6 +29,7 @@
           %th= t("views.links.payment_method")
           %th= t("views.links.days_left")
           %th= t(:status)
+          %th
           %th.actions= t("views.application.actions")
       %tbody
         - @links.each do |link|
@@ -39,11 +43,15 @@
             %td= link.payment_method_name
             %td= link.days_left
             %td= link.status_name
+            %td
+              - if current_user.admin? && link.has_unmoderated_payments?
+                %span.badge.badge-warning{:title => t(:unmoderated_payments_count)}
+                  = link.payments.unmoderated.count
             %td.actions
-              = link_to t("views.links.payments"), link_payments_path(link.id)
-              = link_to t("views.application.show"), link_path(link.id)
-              = link_to t("views.application.edit"), edit_link_path(link.id)
-              = link_to t("views.application.destroy"), link, :confirm => t("views.application.are_you_sure"), :method => :delete
+              = link_to t("views.links.payments"), link_payments_path(link.id), :class => "btn"
+              = link_to t("views.application.show"), link_path(link.id), :class => "btn"
+              = link_to t("views.application.edit"), edit_link_path(link.id), :class => "btn"
+              = link_to t("views.application.destroy"), link, :confirm => t("views.application.are_you_sure"), :method => :delete, :class => "btn btn-danger"
   - else
     %p
       - if params[:filter].present?

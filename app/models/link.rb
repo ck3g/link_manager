@@ -7,9 +7,10 @@ class Link < ActiveRecord::Base
   # TODO: Массовое добавление. Поля вряд.
   #
   # TODO: User Roles. Обычные пользователи не могут управлять: Категориями, Нашими Сайтами
-  # TODO: Возможность привязать определенного пользователя к OurSites, PaymentMethods
   # TODO: Статистика: Сколько сайтов в базе, инормация о PR (Сколько каждого ранга), кол-во (.com, .net, .ru), общие затраты в месяц за ссылки
   # TODO: постраничная навигация. Возможноть выбирать по 25, 50 или 100 на странице.
+  # TODO: Еще надо сделать так, чтобы этот человек не видел некоторые проекты. У нас несколько заказчиков, а мой помощник знает только об одном. Как говорится - меньше знаешь, крепче спишь :)
+  # TODO: Тоже нужно ограничение например только по одному или по нескольким сайтам. Я возможно привлеку еще людей, которые сами будут покупать ссылки, но они ведут только один или два сайта.
   include ActionView::Helpers::DateHelper
 
   belongs_to :user
@@ -82,9 +83,13 @@ class Link < ActiveRecord::Base
     end
   end
 
+  def has_unmoderated_payments?
+    payments.unmoderated.count > 0
+  end
+
   private
   def last_payment
-    self.payments.last
+    self.payments.moderated.last
   end
 
   def nil_sign

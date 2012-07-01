@@ -1,5 +1,5 @@
 class SellerOriginsController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
   before_filter :find_seller_origin, :only => [:edit, :update, :destroy]
 
   def index

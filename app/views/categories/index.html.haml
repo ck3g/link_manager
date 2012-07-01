@@ -2,7 +2,7 @@
   = title t(:categories_title)
 
 %p
-  = link_to t("views.application.new"), new_category_path, :class => "btn"
+  = link_to t("views.application.new"), new_category_path, :class => "btn" if can? :create, Category
 
 - if @categories.present?
   %table.table.table-striped
@@ -17,5 +17,5 @@
           %td= category.id
           %td= category.name
           %td.actions
-            = link_to t("views.application.edit"), edit_category_path(category.id)
+            = link_to t("views.application.edit"), edit_category_path(category.id), :class => "btn" if can? :manage, Category
             =# link_to t("views.application.destroy"), category, :confirm => t("views.application.are_you_sure"), :method => :delete

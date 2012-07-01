@@ -1,9 +1,11 @@
 LinkManager::Application.routes.draw do
-  resources :payment_methods, :statuses, :placements, :seller_origins, :categories, :our_sites, :only => [:new, :edit, :create, :update, :destroy, :index]
+  resources :payment_methods, :statuses, :placements, :seller_origins, :categories, :our_sites, :users, :only => [:new, :edit, :create, :update, :destroy, :index]
   resources :logs, :only => [:index]
 
   resources :links do
-    resources :payments, :only => [:new, :create, :update, :destroy, :index]
+    resources :payments do
+      post :moderate, :on => :member
+    end
     get 'check', :on => :collection
     post 'check', :on => :collection
   end
@@ -12,7 +14,9 @@ LinkManager::Application.routes.draw do
     resources :comments, :only => [:create]
   end
 
-  devise_for :users
+  devise_for :users do
+    get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120429194624) do
+ActiveRecord::Schema.define(:version => 20120701113419) do
+
+  create_table "access_list_users_our_sites", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "our_site_id"
+  end
+
+  add_index "access_list_users_our_sites", ["our_site_id"], :name => "index_access_list_users_our_sites_on_our_site_id"
+  add_index "access_list_users_our_sites", ["user_id"], :name => "index_access_list_users_our_sites_on_user_id"
+
+  create_table "access_list_users_payment_methods", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "payment_method_id"
+  end
+
+  add_index "access_list_users_payment_methods", ["payment_method_id"], :name => "index_access_list_users_payment_methods_on_payment_method_id"
+  add_index "access_list_users_payment_methods", ["user_id"], :name => "index_access_list_users_payment_methods_on_user_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -20,6 +36,48 @@ ActiveRecord::Schema.define(:version => 20120429194624) do
   end
 
   add_index "categories", ["name"], :name => "index_categories_on_name", :unique => true
+
+  create_table "comments", :force => true do |t|
+    t.string   "title",            :limit => 50, :default => ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "gritter_notices", :force => true do |t|
+    t.integer  "owner_id",     :null => false
+    t.string   "owner_type",   :null => false
+    t.text     "text",         :null => false
+    t.text     "options",      :null => false
+    t.datetime "delivered_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "gritter_notices", ["owner_id", "delivered_at"], :name => "index_gritter_notices_on_owner_id_and_delivered_at"
 
   create_table "links", :force => true do |t|
     t.string   "url"
@@ -77,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20120429194624) do
     t.datetime "next_payment_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "moderated",         :default => false
   end
 
   add_index "payments", ["link_id"], :name => "index_payments_on_link_id"
@@ -125,9 +184,11 @@ ActiveRecord::Schema.define(:version => 20120429194624) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "role",                                  :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["role"], :name => "index_users_on_role"
 
 end

@@ -101,3 +101,11 @@ tr.inactive {
 h2.inactive {
   text-decoration: line-through;
 }
+
+.choices-group {
+  list-style: none;
+
+  label input{
+    display: inline;
+  }
+}

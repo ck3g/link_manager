@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
   before_filter :find_link
-  before_filter :find_payment, :only => [:edit, :update, :destroy]
+  before_filter :find_payment, :only => [:edit, :update, :destroy, :moderate]
 
   def index
     @payments = Payment.includes(:seller, :payment_method).where(:link_id => params[:link_id])
@@ -33,6 +33,11 @@ class PaymentsController < ApplicationController
   def destroy
     @payment.destroy
     redirect_to link_payments_path(@link.id)
+  end
+
+  def moderate
+    @payment.update_attribute :moderated, true
+    redirect_to link_payments_path(@link)
   end
 
   private

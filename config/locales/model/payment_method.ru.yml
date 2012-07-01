@@ -1,0 +1,7 @@
+
+ru:
+  activerecord:
+    attributes:
+      payment_method:
+        name: Название
+        access_list_users: Доступ пользователям
