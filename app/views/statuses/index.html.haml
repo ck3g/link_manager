@@ -2,7 +2,7 @@
   = title t(:statuses_title)
 
 %p
-  = link_to t("views.application.new"), new_status_path, :class => "btn"
+  = link_to t("views.application.new"), new_status_path, :class => "btn" if can? :create, Status
 
 - if @statuses.present?
   %table.table.table-striped
@@ -17,5 +17,6 @@
           %td= status.id
           %td= status.name
           %td.actions
-            = link_to t("views.application.edit"), edit_status_path(status.id)
-            = link_to t("views.application.destroy"), status, :confirm => t("views.application.are_you_sure"), :method => :delete
+            - if can? :manage, Status
+              = link_to t("views.application.edit"), edit_status_path(status.id)
+              = link_to t("views.application.destroy"), status, :confirm => t("views.application.are_you_sure"), :method => :delete

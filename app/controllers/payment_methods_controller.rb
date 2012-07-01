@@ -3,7 +3,11 @@ class PaymentMethodsController < ApplicationController
   before_filter :find_payment_method, :only => [:edit, :update, :destroy]
 
   def index
-    @methods = PaymentMethod.order(:name)
+    @methods = if current_user.admin?
+                 PaymentMethod.order(:name)
+               else
+                 PaymentMethod.visible_for(current_user.id).order(:name)
+               end
   end
 
   def new
@@ -34,6 +38,10 @@ class PaymentMethodsController < ApplicationController
 
   private
   def find_payment_method
-    @method = PaymentMethod.find(params[:id])
+    @method = if current_user.admin?
+                PaymentMethod.find(params[:id])
+              else
+                PaymentMethod.visible_for(current_user.id).find(params[:id])
+              end
   end
 end

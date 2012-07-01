@@ -2,7 +2,7 @@
   = title t("views.sellers.title")
 
 %p
-  = link_to t("views.application.new"), new_seller_path, :class => "btn"
+  = link_to t("views.application.new"), new_seller_path, :class => "btn" if can? :create, Seller
 
 - if @sellers.present?
   %table.table.table-striped
@@ -19,7 +19,8 @@
           %td= seller.name
           %td= seller.wm_wallet
           %td.actions
-            = link_to t("views.application.show"), seller_path(seller.id)
-            = link_to t("views.application.edit"), edit_seller_path(seller.id)
-            = link_to t("views.application.destroy"), seller, :confirm => t("views.application.are_you_sure"), :method => :delete
+            = link_to t("views.application.show"), seller_path(seller.id), :class => "btn" if can? :read, Seller
+            - if can? :manage, Seller
+              = link_to t("views.application.edit"), edit_seller_path(seller.id), :class => "btn"
+              = link_to t("views.application.destroy"), seller, :confirm => t("views.application.are_you_sure"), :method => :delete, :class => "btn btn-danger"
 

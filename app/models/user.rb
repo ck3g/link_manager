@@ -8,6 +8,14 @@ class User < ActiveRecord::Base
 
   has_many :links
   has_many :payments
+  has_and_belongs_to_many :access_list_payment_methods, :join_table => :access_list_users_payment_methods, :class_name => "PaymentMethod"
+  has_and_belongs_to_many :access_list_our_sites, :join_table => :access_list_users_our_sites, :class_name => "OurSite"
+
+  scope :moderators, lambda { where(:role => 2) }
+
+  def to_s
+    self.email
+  end
 
   def admin?
     self.role == 1
@@ -34,5 +42,11 @@ class User < ActiveRecord::Base
 
   def cannot_sign_in?
     !can_sign_in?
+  end
+
+  class << self
+    def collection_of_moderators
+      User.moderators.collect { |u| [u.email, u.id] }
+    end
   end
 end

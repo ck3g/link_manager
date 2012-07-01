@@ -7,7 +7,7 @@ gem 'mysql2'
 gem 'json'
 
 gem "haml", "~> 3.1.4"
-gem "kaminari", "~> 0.12.4"
+gem "kaminari", "~> 0.13.0"
 gem "devise", "~> 1.5.2"
 gem 'bitmask_attributes'
 gem "formtastic", "~> 2.1.1"

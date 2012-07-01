@@ -9,7 +9,11 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.moderator?
-      can [:read, :check], Link
+      can [:manage, :check], Link
+      can [:read], [PaymentMethod, Seller]
+      can [:manage], Payment
+      cannot [:moderate, :destroy], Payment
+      can [:index], [Status, Placement, Seller, SellerOrigin, Category, OurSite]
     end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

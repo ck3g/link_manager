@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701054041) do
+ActiveRecord::Schema.define(:version => 20120701113419) do
+
+  create_table "access_list_users_our_sites", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "our_site_id"
+  end
+
+  add_index "access_list_users_our_sites", ["our_site_id"], :name => "index_access_list_users_our_sites_on_our_site_id"
+  add_index "access_list_users_our_sites", ["user_id"], :name => "index_access_list_users_our_sites_on_user_id"
+
+  create_table "access_list_users_payment_methods", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "payment_method_id"
+  end
+
+  add_index "access_list_users_payment_methods", ["payment_method_id"], :name => "index_access_list_users_payment_methods_on_payment_method_id"
+  add_index "access_list_users_payment_methods", ["user_id"], :name => "index_access_list_users_payment_methods_on_user_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
