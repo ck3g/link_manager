@@ -1,5 +1,5 @@
 class LogsController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
   has_scope :user_id
   has_scope :link_id
 

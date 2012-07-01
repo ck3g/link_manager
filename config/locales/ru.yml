@@ -13,10 +13,6 @@ ru:
       link:
         our_site: Наш сайт
         inactive: Неактивна
-      user:
-        email: "Email"
-        password: "Пароль"
-        remember_me: "Не выходить из системы"
       status:
         name: Название
       comment:
@@ -227,4 +223,7 @@ ru:
   inactive_yes: Да
   inactive_no: Нет
   unmoderated_payments_count: Количество неактивных оплат
+  users: Пользователи
+  edit_user: Редактирование пользователя %{email}
+  change_password_hint: Оставить поле пустым во избежание смены пароля
 

@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
   before_filter :find_link, :only => [:show, :edit, :update, :destroy]
 
   has_scope :url

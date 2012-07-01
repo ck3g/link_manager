@@ -17,6 +17,7 @@ gem "has_scope", "~> 0.5.1"
 gem "bootstrap-sass"
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :git => 'git://github.com/anjlab/bootstrap-rails.git'
+gem "cancan"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.5'

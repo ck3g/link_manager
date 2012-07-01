@@ -6,8 +6,10 @@
         = current_user.email
         %span.caret
       %ul.dropdown-menu
+        - if can? :manage, User
+          %li= link_to t(:users), users_path
         %li.divider
-        %li= link_to t("auth.sign_out"), destroy_user_session_path, :method => :delete
+        %li= link_to t("auth.sign_out"), destroy_user_session_path
     %ul.nav.pull-right
       %li#menu-links.dropdown{ :class => active("links") }
         = link_to "#menu-links", :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
@@ -17,6 +19,7 @@
           %li= link_to t("views.application.links"), links_path
           %li= link_to t("views.application.categories"), categories_path
           %li= link_to t("views.application.our_sites"), our_sites_path
+          %li= link_to t("views.links.check"), check_links_path if can? :check, Link
 
       %li#menu-sellers.dropdown{ :class => active("sellers") }
         = link_to "#menu-sellers", :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
@@ -32,8 +35,9 @@
         = link_to t("views.application.placements"), placements_path
       %li{ :class => active("statuses") }
         = link_to t("views.application.statuses"), statuses_path
-      %li{ :class => active("logs") }
-        = link_to t("views.application.log"), logs_path
+      - if can? :read, Log
+        %li{ :class => active("logs") }
+          = link_to t("views.application.log"), logs_path
       %li.divider-vertical
 
   - else

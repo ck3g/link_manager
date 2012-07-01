@@ -1,5 +1,5 @@
 class PaymentsController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
   before_filter :find_link
   before_filter :find_payment, :only => [:edit, :update, :destroy, :moderate]
 

@@ -1,6 +1,9 @@
 %p
   = link_to t("views.application.new"), new_link_path, :class => "btn"
-  = link_to t("views.links.check"), check_links_path, :class => "btn"
+
+  - if can? :check, Link
+    = link_to t("views.links.check"), check_links_path, :class => "btn"
+
   - if params[:inactive].blank?
     = link_to t("views.links.show_inactive"), links_path(:inactive => true), :class => "btn btn-info"
   - else
