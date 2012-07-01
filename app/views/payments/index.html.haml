@@ -20,17 +20,23 @@
       - @payments.each do |payment|
         %tr
           %td= payment.id
-          %td= payment.seller.name
-          %td= payment.payment_method.name
+          %td= payment.seller_name
+          %td= payment.payment_method_name
           %td= l payment.paid_at.to_date
           %td= l payment.next_payment_at.to_date
           %td= to_currency payment.amount
           %td= to_currency payment.per_month
           %td.actions
-            = link_to t("views.application.edit"), edit_link_payment_path(@link.id, payment.id)
-            = link_to t("views.application.destroy"), link_payment_path(@link, payment), :method => :delete, :confirm => t("views.application.are_you_sure")
+            - if can?(:moderate, Payment) && !payment.moderated?
+              = link_to moderate_link_payment_path(@link, payment), :method => :post, :class => "btn btn-success" do
+                %i.icon-ok.icon-white
+                = t("views.application.moderate")
+            = link_to t("views.application.edit"), edit_link_payment_path(@link.id, payment.id), :class => "btn"
+            - if can? :destroy, Payment
+              = link_to t("views.application.destroy"), link_payment_path(@link, payment), :method => :delete, :confirm => t("views.application.are_you_sure"), :class => "btn btn-danger"
       %tr.total
         %td{:colspan => 4}
         %th= t("views.payments.total_amount")
         %td= to_currency @link.total_amount
+        %td
         %td

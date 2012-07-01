@@ -2,7 +2,7 @@
   = title t(:seller_origins_title)
 
 %p
-  = link_to t("views.application.new"), new_seller_origin_path, :class => "btn"
+  = link_to t("views.application.new"), new_seller_origin_path, :class => "btn" if can? :create, SellerOrigin
 
 - if @seller_origins.present?
   %table.table.table-striped
@@ -17,6 +17,7 @@
           %td= so.id
           %td= so.name
           %td.actions
-            = link_to t("views.application.edit"), edit_seller_origin_path(so.id)
-            = link_to t("views.application.destroy"), so, :confirm => t("views.application.are_you_sure"), :method => :delete
+            - if can? :manage, SellerOrigin
+              = link_to t("views.application.edit"), edit_seller_origin_path(so.id)
+              = link_to t("views.application.destroy"), so, :confirm => t("views.application.are_you_sure"), :method => :delete
 

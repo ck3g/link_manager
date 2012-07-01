@@ -8,17 +8,22 @@
     /[if lt IE 9]
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   %body
-    %header.navbar.navbar-fixed-top
+    .navbar.navbar-fixed-top
       .navbar-inner
-        .container
-          = link_to "Links Manager", root_path, :id => "logo"
+        .container-fluid
+          = link_to "", :class => "btn btn-navbar", :data => { :toggle => "collapse", :target => ".nav-collapse" } do
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to "Links Manager", root_path, :id => "logo", :class => "brand"
           = render :partial => 'layouts/menu'
-    .container
-      = render :partial => 'shared/flash_messages'
-      = yield
+    .container-fluid
+      .row-fluid
+        .span12
+          = render :partial => 'shared/flash_messages'
+          = yield
 
-    %footer
-      .container
+      %footer
         %p
           &copy; Company 2012
 

@@ -8,7 +8,7 @@
     %td= @link.page_rank
   %tr
     %th= t("views.links.placement")
-    %td= @link.placement.name
+    %td= @link.placement_name
   %tr
     %th= t("views.links.name")
     %td= @link.name
@@ -22,7 +22,7 @@
   - if @link.our_site.present?
     %tr
       %th= t("views.links.our_site")
-      %td= @link.our_site.name
+      %td= @link.our_site_name
   %tr
     %th= t("views.links.payment_method")
     %td= @link.payment_method_name

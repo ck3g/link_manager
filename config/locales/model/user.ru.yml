@@ -1,0 +1,24 @@
+
+ru:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: не может быть пустым
+              confirmation: Пароль и Подтверждение пароля должны совпадать
+              too_short: Пароль должен содержать большее количество символов
+    attributes:
+      user:
+        id: id
+        email: E-mail
+        role: Роль
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+    values:
+      user:
+        roles:
+          "0": Гость (Заблокированный)
+          "1": Администратор
+          "2": Модератор

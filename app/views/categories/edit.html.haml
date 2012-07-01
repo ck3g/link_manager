@@ -1,5 +1,5 @@
 %h1
   = title "#{t("views.categories.edit")}: #{@category.name}"
 
-= render :partial => "form"
+= render "form", :category => @category
 

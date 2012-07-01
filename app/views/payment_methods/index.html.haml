@@ -2,7 +2,7 @@
   = title t("views.payment_methods.title")
 
 %p
-  = link_to t("views.application.new"), new_payment_method_path, :class => "btn"
+  = link_to t("views.application.new"), new_payment_method_path, :class => "btn" if can? :create, PaymentMethod
 
 - if @methods.present?
   %table.table.table-striped
@@ -22,5 +22,6 @@
           %td
             = method.name
           %td.actions
-            = link_to t("views.application.edit"), edit_payment_method_path(method.id)
-            = link_to t("views.application.destroy"), method, :confirm => t("views.application.are_you_sure"), :method => :delete
+            - if can? :manage, PaymentMethod
+              = link_to t("views.application.edit"), edit_payment_method_path(method.id)
+              = link_to t("views.application.destroy"), method, :confirm => t("views.application.are_you_sure"), :method => :delete

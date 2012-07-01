@@ -1,8 +1,13 @@
 class OurSitesController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
+  before_filter :find_our_site, :only => [:edit, :update]
 
   def index
-    @our_sites = OurSite.all
+    @our_sites = if current_user.admin?
+                   OurSite.order(:name)
+                 else
+                   OurSite.visible_for(current_user.id)
+                 end
   end
 
   def new
@@ -10,7 +15,6 @@ class OurSitesController < ApplicationController
   end
 
   def edit
-    @our_site = OurSite.find params[:id]
   end
 
   def create
@@ -18,16 +22,24 @@ class OurSitesController < ApplicationController
     if @our_site.save
       redirect_to our_sites_path, :notice => t("views.application.successfully_created")
     else
-      render :action => "new"
+      render "new"
     end
   end
 
   def update
-    @our_site = OurSite.find params[:id]
     if @our_site.update_attributes params[:our_site]
       redirect_to our_sites_path, :notice => t("views.application.successfully_updated")
     else
-      render :action => "edit"
+      render "edit"
     end
+  end
+
+  private
+  def find_our_site
+    @our_site = if current_user.admin?
+                  OurSite.find params[:id]
+                else
+                  OurSite.visible_for(current_user.id).find params[:id]
+                end
   end
 end
