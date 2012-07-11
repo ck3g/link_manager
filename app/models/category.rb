@@ -16,7 +16,7 @@ class Category < ActiveRecord::Base
   class << self
     def visible_for(user)
       if user.admin?
-        Categoy.all
+        Category.all
       else
         OurSite.visible_for(user.id).map(&:category)
       end
