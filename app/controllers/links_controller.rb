@@ -9,7 +9,7 @@ class LinksController < ApplicationController
 
   def index
     @links = apply_scopes(Link).order('created_at DESC')
-    @links = @links.where(:inactive => false) unless params[:inactive].present?
+    @links = @links.inactive unless params[:inactive].present?
     @links = @links.where(:id => Link.by_seller(params[:seller])) if params[:seller].present?
     @links = @links.where(:placement_id => params[:placement]) if params[:placement].present?
     @links = @links.where(:id => Link.by_payment_method(params[:pm])) if params[:pm].present?

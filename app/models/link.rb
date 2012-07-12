@@ -27,9 +27,9 @@ class Link < ActiveRecord::Base
 
   scope :url, proc { |url| where('url LIKE ?', "%#{url}%")}
   scope :page_rank, proc { |page_rank| where(:page_rank => page_rank) }
-  scope :placement, proc { |placement| where(:placement => placement) }
   scope :link_name, proc { |name| where('name LIKE ?', "%#{name}%") }
   scope :keyword, proc { |keyword| where('keyword LIKE ?', "%#{keyword}%") }
+  scope :inactive, lambda { where(:inactive => false) }
 
   def days_left
     if last_payment.present?
