@@ -46,9 +46,9 @@ class LinksController < ApplicationController
   end
 
   def check
+    @links = []
     if params[:links].present?
       links_to_check = params[:links].strip.split("\n").map(&:strip).compact.reject(&:blank?)
-      @links = []
       links_to_check.each do |link_to_check|
         link = Link.where{url =~ "%#{link_to_check}"}.first
         css_class = if link.present?
