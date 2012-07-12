@@ -1,11 +1,11 @@
 %h1= title t("views.links.check")
 
-- if @links_to_check.present?
+- if @links.present?
   %ul.checked-links
-    - @links_to_check.each do |link|
+    - @links.each do |link|
       %li
-        %span{:class => checked_link_class(@links, link)}
-          = link
+        %span{:class => link[:class]}
+          = link[:url]
 
 = form_tag check_links_path do
   %p

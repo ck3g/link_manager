@@ -47,8 +47,18 @@ class LinksController < ApplicationController
 
   def check
     if params[:links].present?
-      @links_to_check = params[:links].strip.split("\n").map(&:strip).compact.reject(&:blank?)
-      @links = Link.all.select { |link| @links_to_check.include? link.url }.collect { |link| link.url }
+      links_to_check = params[:links].strip.split("\n").map(&:strip).compact.reject(&:blank?)
+      @links = []
+      links_to_check.each do |link_to_check|
+        link = Link.where{url =~ "%#{link_to_check}"}.first
+        css_class = if link.present?
+                      link.inactive? ? "inactive" : "active"
+                    else
+                      "new"
+                    end
+
+        @links << { :url => link_to_check, :class => css_class }
+      end
     end
   end
 

@@ -18,6 +18,7 @@ gem "bootstrap-sass"
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :git => 'git://github.com/anjlab/bootstrap-rails.git'
 gem "cancan", "1.6.7"
+gem "squeel"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.5'

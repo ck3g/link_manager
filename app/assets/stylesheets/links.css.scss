@@ -9,3 +9,10 @@
 textarea.check-links {
   width: 90%;
 }
+
+ul.checked-links {
+  list-style: none;
+  .active { color: blue; }
+  .inactive { color: red; }
+  .new { color: green; }
+}
