@@ -13,7 +13,8 @@ class Link < ActiveRecord::Base
   belongs_to :status
   belongs_to :placement
   belongs_to :our_site
-  has_many :sellers, :through => :payments
+  has_one :last_payment, :class_name => "Payment", :conditions => { :moderated => true }, :order => 'payments.id DESC'
+  has_one :seller, :through => :last_payment
 
   attr_protected :user_id
 
@@ -29,6 +30,11 @@ class Link < ActiveRecord::Base
   scope :link_name, proc { |name| where('name LIKE ?', "%#{name}%") }
   scope :keyword, proc { |keyword| where('keyword LIKE ?', "%#{keyword}%") }
   scope :inactive, lambda { where(:inactive => false) }
+  scope :with_unmoderated_count, lambda {
+    joins{payments.outer}.
+    group{links.id}.
+    select{"links.*, COUNT(payments.id) AS unmoderated_payments_count"}
+  }
 
   def days_left
     if last_payment.present?
@@ -47,11 +53,11 @@ class Link < ActiveRecord::Base
   end
 
   def seller_name
-    last_payment.present? ? last_payment.seller.name : nil_sign
+    seller.try(:name).presence || nil_sign
   end
 
   def payment_method_name
-    last_payment.present? ? last_payment.payment_method.name : nil_sign
+    last_payment.try(:payment_method_name).presence || nil_sign
   end
 
   def total_amount
@@ -59,33 +65,26 @@ class Link < ActiveRecord::Base
   end
 
   def status_name
-    if self.status.present?
-      self.status.name
-    else
-      "-"
-    end
+    status.try(:name).presence || "-"
   end
 
   class << self
     def by_seller(name)
       payments = Payment.where :seller_id => Seller.where('name LIKE ?', "%#{name}%")
-      self.select { |link| payments.include?(link.payments.last) }
+      self.select { |link| payments.include?(link.last_payment) }
     end
 
     def by_payment_method(ids)
       payments = Payment.where :payment_method_id => ids
-      self.select { |link| payments.include?(link.payments.last) }
+      self.select { |link| payments.include?(link.last_payment) }
     end
   end
 
   def has_unmoderated_payments?
-    payments.unmoderated.count > 0
+    unmoderated_payments_count > 0
   end
 
   private
-  def last_payment
-    self.payments.moderated.last
-  end
 
   def nil_sign
     "-"

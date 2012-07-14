@@ -8,13 +8,13 @@ class LinksController < ApplicationController
   has_scope :keyword
 
   def index
-    @links = apply_scopes(Link).order('created_at DESC')
+    @links = apply_scopes(Link.includes(:placement, :last_payment, :seller).with_unmoderated_count)
     @links = @links.inactive unless params[:inactive].present?
     @links = @links.where(:id => Link.by_seller(params[:seller])) if params[:seller].present?
     @links = @links.where(:placement_id => params[:placement]) if params[:placement].present?
     @links = @links.where(:id => Link.by_payment_method(params[:pm])) if params[:pm].present?
     @links = @links.sort_by(&:days_left).sort_by(&:seller_name)
-    @links = Kaminari.paginate_array(@links).page(params[:page]).per(params[:per_page])
+    @links = Kaminari.paginate_array(@links.to_a).page(params[:page]).per(params[:per_page])
 
     set_meta_tags :title => I18n.t(:links_title)
   end

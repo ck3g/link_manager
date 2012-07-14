@@ -45,7 +45,7 @@
             %td
               - if current_user.admin? && link.has_unmoderated_payments?
                 %span.badge.badge-warning{:title => t(:unmoderated_payments_count)}
-                  = link.payments.unmoderated.count
+                  = link.unmoderated_payments_count
             %td.actions
               = link_to t("views.links.payments"), link_payments_path(link.id), :class => "btn"
               = link_to t("views.application.show"), link_path(link.id), :class => "btn"
