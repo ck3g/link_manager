@@ -6,7 +6,6 @@ class Link < ActiveRecord::Base
   # TODO: Массовое добавление. Поля вряд.
   #
   # TODO: Статистика: Сколько сайтов в базе, инормация о PR (Сколько каждого ранга), кол-во (.com, .net, .ru), общие затраты в месяц за ссылки
-  # TODO: постраничная навигация. Возможноть выбирать по 25, 50 или 100 на странице.
   include ActionView::Helpers::DateHelper
 
   belongs_to :user
@@ -14,11 +13,11 @@ class Link < ActiveRecord::Base
   belongs_to :status
   belongs_to :placement
   belongs_to :our_site
+  has_many :sellers, :through => :payments
 
   attr_protected :user_id
 
-  validates :url, :presence => true
-  validates :name, :keyword, :presence => true
+  validates :url, :name, :keyword, :placement_id, :presence => true
   validates :page_rank, :numericality => true, :inclusion => { :in => 1..10 }
 
   delegate :name, :to => :placement, :prefix => true

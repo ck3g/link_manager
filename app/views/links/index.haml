@@ -59,3 +59,6 @@
         = link_to t(:clear_filter), links_path
       - else
         = t(:link_list_is_empty)
+
+  = paginate @links
+  = render 'shared/per_page' if @links.present?

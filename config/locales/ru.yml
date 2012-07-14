@@ -47,6 +47,8 @@ ru:
               blank: "Название не может быть пустым"
             keyword:
               blank: "Ключевое слово не может быть пустым"
+            placement_id:
+              blank: Не может быть пустым
         payment:
           attributes:
             amount:

@@ -14,6 +14,7 @@ class LinksController < ApplicationController
     @links = @links.where(:placement_id => params[:placement]) if params[:placement].present?
     @links = @links.where(:id => Link.by_payment_method(params[:pm])) if params[:pm].present?
     @links = @links.sort_by(&:days_left).sort_by(&:seller_name)
+    @links = Kaminari.paginate_array(@links).page(params[:page]).per(params[:per_page])
 
     set_meta_tags :title => I18n.t(:links_title)
   end

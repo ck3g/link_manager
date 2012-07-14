@@ -3,7 +3,7 @@
     = f.input :url, :as => :string
     = f.input :page_rank
     = f.input :name
-    = f.input :placement
+    = f.input :placement, :required => true
     = f.input :keyword
     = f.input :status_id, :as => :select, :collection => Status.all
     #link_our_our_site_input.select.crearfix.optional
