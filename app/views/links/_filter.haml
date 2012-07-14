@@ -1,31 +1,35 @@
-= form_tag links_path, :method => :get, :class => 'form-horizontal' do
-  = hidden_field_tag :filter, 1
-  %fieldset
-    %legend= t("views.links.filter")
-    - [:url, :page_rank, :placement, :link_name, :keyword, :seller].each do |field|
-      .control-group
-        %label.control-label{ :for => field }
-          = t("views.links.#{field}")
-        .controls
-          - if field == :placement
-            - Placement.all.each do |placement|
-              - checked = params[:placement].present? && params[:placement].include?(placement.id.to_s)
-              = check_box_tag 'placement[]', placement.id, checked, :id => dom_id(placement)
-              = label_tag dom_id(placement), placement.name, :class => "checkbox inline"
-          - else
-            = text_field_tag field, params[field], :class => "input-xlarge"
+.modal.hide#filter-modal
+  .modal-header
+    %button.close{:type => "button", :"data-dismiss" => "modal"}= "x"
+    %h3= t("views.links.filter")
 
-    - if PaymentMethod.all.present?
-      .control-group
-        %label.control-label
-          = t("views.link.payment_method")
-        .controls
-          - PaymentMethod.all.each do |payment_method|
-            - checked = params[:pm].present? && params[:pm].include?(payment_method.id.to_s)
-            = check_box_tag 'pm[]', payment_method.id, checked, :id => dom_id(payment_method)
-            = label_tag dom_id(payment_method), payment_method.name, :class => "checkbox inline"
+  = form_tag links_path, :method => :get, :class => 'form-horizontal' do
+    .modal-body
+      = hidden_field_tag :filter, 1
+      - [:url, :page_rank, :placement, :link_name, :keyword, :seller].each do |field|
+        .control-group
+          %label.control-label{ :for => field }
+            = t("views.links.#{field}")
+          .controls
+            - if field == :placement
+              - Placement.all.each do |placement|
+                - checked = params[:placement].present? && params[:placement].include?(placement.id.to_s)
+                = check_box_tag 'placement[]', placement.id, checked, :id => dom_id(placement)
+                = label_tag dom_id(placement), placement.name, :class => "checkbox inline"
+            - else
+              = text_field_tag field, params[field], :class => "input-xlarge"
 
-    .form-actions
+      - if PaymentMethod.all.present?
+        .control-group
+          %label.control-label
+            = t("views.link.payment_method")
+          .controls
+            - PaymentMethod.all.each do |payment_method|
+              - checked = params[:pm].present? && params[:pm].include?(payment_method.id.to_s)
+              = check_box_tag 'pm[]', payment_method.id, checked, :id => dom_id(payment_method)
+              = label_tag dom_id(payment_method), payment_method.name, :class => "checkbox inline"
+
+    .modal-footer
       %input.btn.btn-primary{:type => :submit, :value => t("views.links.do_filter")}
       - if params[:filter].present?
         = link_to t(:clear_filter), links_path, :class => "cancel btn"

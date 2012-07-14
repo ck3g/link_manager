@@ -8,12 +8,11 @@
     = link_to t("views.links.show_inactive"), links_path(:inactive => true), :class => "btn btn-info"
   - else
     = link_to t("views.links.hide_inactive"), links_path, :class => "btn btn-info"
-  = link_to "#", :id => :filter, :class => "btn", :remote => true do
+  = link_to "#filter-modal", :class => "btn", :"data-toggle" => "modal" do
     %i.icon-search
     = t("views.links.filter")
 
-#filter-wrapper
-  = render "filter"
+= render "filter"
 
 .sideleft
   - if @links.present?

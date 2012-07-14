@@ -3,8 +3,3 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #
 
-$ ->
-  $("#filter").on "click", (e) ->  
-    $(this).toggleClass "active"
-    e.preventDefault()
-    $("#filter-wrapper").slideToggle()
