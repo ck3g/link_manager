@@ -1,5 +1,6 @@
 class PlacementsController < ApplicationController
   load_and_authorize_resource
+  before_filter :find_placement, only: [:edit, :update, :destroy]
 
   def index
     @placements = Placement.all
@@ -10,30 +11,31 @@ class PlacementsController < ApplicationController
   end
 
   def edit
-    @placement = Placement.find(params[:id])
   end
 
   def create
     @placement = Placement.new(params[:placement])
     if @placement.save
-      redirect_to placements_path, :notice => t("views.application.successfully_created")
+      redirect_to placements_path, notice: t("views.application.successfully_created")
     else
       render "new"
     end
   end
 
   def update
-    @placement = Placement.find(params[:id])
-    if @status.update_attributes params[:placement]
-      redirect_to placements_path, :notice => t("views.application.successfully_updated")
+    if @placement.update_attributes params[:placement]
+      redirect_to placements_path, notice: t("views.application.successfully_updated")
     else
       render "edit"
     end
   end
 
   def destroy
-    @placement = Placement.find params[:id]
     @placement.destroy
     redirect_to placements_path
+  end
+
+  def find_placement
+    @placement = Placement.find params[:id]
   end
 end
