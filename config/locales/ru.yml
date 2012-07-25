@@ -230,4 +230,6 @@ ru:
   change_password_hint: Оставить поле пустым во избежание смены пароля
   visible_for_users: Виден для пользователей
   arrow: →
+  history: История
+  history_for: История для %{link}
 

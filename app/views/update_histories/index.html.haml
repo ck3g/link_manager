@@ -1,0 +1,42 @@
+%h1= title t(:history_for, :link => @link.url)
+
+- if @history.present?
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          %span.has-tooltip{title: @link.url}
+            = UpdateHistory.human_attribute_name(:url)
+        %th
+          %span.has-tooltip{title: @link.page_rank}
+            = UpdateHistory.human_attribute_name(:page_rank)
+        %th
+          %span.has-tooltip{title: @link.name}
+            = UpdateHistory.human_attribute_name(:name)
+        %th
+          %span.has-tooltip{title: @link.placement_name}
+            = UpdateHistory.human_attribute_name(:placement)
+        %th
+          %span.has-tooltip{title: @link.keyword}
+            = UpdateHistory.human_attribute_name(:keyword)
+        %th
+          %span.has-tooltip{title: @link.status_name}
+            = UpdateHistory.human_attribute_name(:status)
+        %th
+          %span.has-tooltip{title: @link.our_site_name}
+            = UpdateHistory.human_attribute_name(:our_site)
+        %th
+          %span.has-tooltip{title: (@link.inactive? ? t(:inactive_yes) : t(:inactive_no))}
+            = UpdateHistory.human_attribute_name(:inactive)
+    %tbody
+      - @history.each do |history|
+        %tr
+          %td= history.url
+          %td= history.page_rank
+          %td= history.name
+          %td= history.placement_name
+          %td= history.keyword
+          %td= history.status_name
+          %td= history.our_site_name
+          %td= history.inactive? ? t(:inactive_yes) : t(:inactive_no)
+

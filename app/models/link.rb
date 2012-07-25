@@ -1,5 +1,4 @@
 class Link < ActiveRecord::Base
-  # TODO: Обновление параметров с сохранением истории
   # TODO: Выбор начальной и конечной даты клендариками или радиобатонами на 3/6/12 месяцев
   # TODO: Имейлы продавца. При добавлении оплаты, выбирать имейл этого продавца. Дать возможность добавить имейл сразу. Если такой имел уже существует в базе, нужно вывести список продавцов у кого такой имейл есть. Возможность забанить имейл, забаненый имел не показывать в списке при оплате.
   # TODO: Возможность продлить оплату до определенного срока, за основу взять текущие параметры (цену и т.п.)
@@ -9,21 +8,24 @@ class Link < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
 
   belongs_to :user
-  has_many :payments
+  has_many :payments, dependent: :destroy
   belongs_to :status
   belongs_to :placement
   belongs_to :our_site
   has_one :last_payment, :class_name => "Payment", :conditions => { :moderated => true }, :order => 'payments.id DESC'
   has_one :seller, :through => :last_payment
+  has_many :update_histories, dependent: :destroy
 
   attr_protected :user_id
 
   validates :url, :name, :keyword, :placement_id, :presence => true
   validates :page_rank, :numericality => true, :inclusion => { :in => 1..10 }
 
-  delegate :name, :to => :placement, :prefix => true
-  delegate :name, :to => :our_site, :prefix => true
-  delegate :email, :to => :user, :prefix => true
+  before_update :update_history
+
+  delegate :name, to: :placement, prefix: true, allow_nil: true
+  delegate :name, to: :our_site, prefix: true, allow_nil: true
+  delegate :email, to: :user, prefix: true, allow_nil: true
 
   scope :url, proc { |url| where('url LIKE ?', "%#{url}%")}
   scope :page_rank, proc { |page_rank| where(:page_rank => page_rank) }
@@ -88,5 +90,18 @@ class Link < ActiveRecord::Base
 
   def nil_sign
     "-"
+  end
+
+  def update_history
+    history = self.update_histories.new
+    history.inactive       = inactive
+    history.keyword        = keyword
+    history.name           = name
+    history.our_site_id    = our_site_id
+    history.page_rank      = page_rank
+    history.placement_id   = placement_id
+    history.status_id      = status_id
+    history.url            = url
+    history.save
   end
 end

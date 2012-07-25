@@ -13,7 +13,7 @@ class Ability
       can [:read], [PaymentMethod, Seller]
       can [:manage], Payment
       cannot [:moderate, :destroy], Payment
-      can [:index], [Status, Placement, Seller, SellerOrigin, Category, OurSite]
+      can [:index], [Status, Placement, Seller, SellerOrigin, Category, OurSite, UpdateHistory]
     end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

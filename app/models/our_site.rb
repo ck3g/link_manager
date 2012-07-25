@@ -1,6 +1,7 @@
 class OurSite < ActiveRecord::Base
   belongs_to :category
   has_many :links
+  has_many :update_histories
 
   attr_accessible :category_id, :name, :access_list_user_ids
 
