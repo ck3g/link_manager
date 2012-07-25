@@ -1,21 +1,26 @@
 LinkManager::Application.routes.draw do
-  resources :payment_methods, :statuses, :placements, :seller_origins, :categories, :our_sites, :users, :only => [:new, :edit, :create, :update, :destroy, :index]
-  resources :logs, :only => [:index]
+  resources :payment_methods, :statuses, :placements,
+    :seller_origins, :categories, :our_sites, :users,
+    only: [:new, :edit, :create, :update, :destroy, :index]
+
+  resources :logs, only: [:index]
 
   resources :links do
     resources :payments do
-      post :moderate, :on => :member
+      post :moderate, on: :member
     end
-    get 'check', :on => :collection
-    post 'check', :on => :collection
+    get 'check', on: :collection
+    post 'check', on: :collection
+
+    resources :update_histories, only: :index
   end
 
   resources :sellers do
-    resources :comments, :only => [:create]
+    resources :comments, only: [:create]
   end
 
   devise_for :users do
-    get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
+    get "/users/sign_out" => "devise/sessions#destroy", as: :destroy_user_session
   end
 
   # The priority is based upon order of creation:
@@ -26,8 +31,8 @@ LinkManager::Application.routes.draw do
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  #   match 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  # This route can be invoked with purchase_url(id: product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
@@ -54,7 +59,7 @@ LinkManager::Application.routes.draw do
   #   resources :products do
   #     resources :comments
   #     resources :sales do
-  #       get 'recent', :on => :collection
+  #       get 'recent', on: :collection
   #     end
   #   end
 
@@ -67,7 +72,7 @@ LinkManager::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'links#index'
+  root to: 'links#index'
 
   # See how all your routes lay out with "rake routes"
 

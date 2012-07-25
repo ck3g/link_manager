@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701113419) do
+ActiveRecord::Schema.define(:version => 20120725060628) do
 
   create_table "access_list_users_our_sites", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -170,6 +170,26 @@ ActiveRecord::Schema.define(:version => 20120701113419) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "update_histories", :force => true do |t|
+    t.integer  "link_id"
+    t.string   "url"
+    t.string   "name"
+    t.integer  "page_rank"
+    t.string   "keyword"
+    t.integer  "status_id"
+    t.integer  "placement_id"
+    t.integer  "our_site_id"
+    t.boolean  "inactive"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "update_histories", ["inactive"], :name => "index_update_histories_on_inactive"
+  add_index "update_histories", ["link_id"], :name => "index_update_histories_on_link_id"
+  add_index "update_histories", ["our_site_id"], :name => "index_update_histories_on_our_site_id"
+  add_index "update_histories", ["placement_id"], :name => "index_update_histories_on_placement_id"
+  add_index "update_histories", ["status_id"], :name => "index_update_histories_on_status_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

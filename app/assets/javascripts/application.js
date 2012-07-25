@@ -17,4 +17,6 @@ $(function() {
   });
 
   $('.datepicker').datepicker($.datepicker.regional['ru']);
+
+  $('.has-tooltip').tooltip();
 });
