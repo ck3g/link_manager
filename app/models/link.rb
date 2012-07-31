@@ -4,8 +4,10 @@ class Link < ActiveRecord::Base
   # TODO: Возможность продлить оплату до определенного срока, за основу взять текущие параметры (цену и т.п.)
   # TODO: Массовое добавление. Поля вряд.
   #
-  # TODO: Статистика: Сколько сайтов в базе, инормация о PR (Сколько каждого ранга), кол-во (.com, .net, .ru), общие затраты в месяц за ссылки
+  # TODO: Статистика: общие затраты в месяц за ссылки
   include ActionView::Helpers::DateHelper
+
+  DOMAINS = %W(.com .net .ru .info)
 
   belongs_to :user
   has_many :payments, dependent: :destroy
@@ -79,6 +81,16 @@ class Link < ActiveRecord::Base
     def by_payment_method(ids)
       payments = Payment.where :payment_method_id => ids
       self.select { |link| payments.include?(link.last_payment) }
+    end
+
+    def count_by_domains
+      by_domains = {}
+      links = Link.all
+      DOMAINS.each do |domain|
+        by_domains[domain] = links.select { |l| l.url.include?(domain) }.count
+      end
+
+      by_domains
     end
   end
 

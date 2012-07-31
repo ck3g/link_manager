@@ -232,4 +232,8 @@ ru:
   arrow: →
   history: История
   history_for: История для %{link}
+  statistics: Статистика
+  total_links: Всего ссылок
+  by_page_rank: По PR
+  by_domains: По доменам
 

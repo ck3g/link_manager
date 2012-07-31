@@ -1,0 +1,22 @@
+%h1= t(:statistics)
+%table.table.vertical
+  %tr
+    %th= t(:total_links)
+    %td= @total_links
+  %tr
+    %th= t(:by_page_rank)
+    %td
+      - @by_page_ranks.each do |pr, count|
+        %p
+          = succeed ":" do
+            %strong= "PR #{pr}"
+          = count
+  %tr
+    %th= t(:by_domains)
+    %td
+      - @by_domains.each do |domain, count|
+        %p
+          = succeed ":" do
+            %strong= domain
+          = count
+

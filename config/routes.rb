@@ -3,7 +3,7 @@ LinkManager::Application.routes.draw do
     :seller_origins, :categories, :our_sites, :users,
     only: [:new, :edit, :create, :update, :destroy, :index]
 
-  resources :logs, only: [:index]
+  resources :logs, :statistics, only: [:index]
 
   resources :links do
     resources :payments do

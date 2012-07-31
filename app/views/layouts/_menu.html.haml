@@ -1,7 +1,7 @@
 .container-fluid
   - if user_signed_in?
     .btn-group.pull-right
-      = link_to "#", :class => "btn dropdown-toggle", :data => { :toggle => "dropdown" } do
+      = link_to "#", class: "btn dropdown-toggle", data: { toggle: "dropdown" } do
         %i.icon-user
         = current_user.email
         %span.caret
@@ -11,8 +11,8 @@
         %li.divider
         %li= link_to t("auth.sign_out"), destroy_user_session_path
     %ul.nav.pull-right
-      %li#menu-links.dropdown{ :class => active("links") }
-        = link_to "#menu-links", :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
+      %li#menu-links.dropdown{ class: active("links") }
+        = link_to "#menu-links", class: "dropdown-toggle", :"data-toggle" => "dropdown" do
           = t("views.application.links")
           %b.caret
         %ul.dropdown-menu
@@ -22,24 +22,27 @@
           %li= link_to t("views.links.check"), check_links_path if can? :check, Link
 
       - if can?(:index, Seller) || can?(:index, SellerOrigin)
-        %li#menu-sellers.dropdown{ :class => active("sellers") }
-          = link_to "#menu-sellers", :class => "dropdown-toggle", :"data-toggle" => "dropdown" do
+        %li#menu-sellers.dropdown{ class: active("sellers") }
+          = link_to "#menu-sellers", class: "dropdown-toggle", :"data-toggle" => "dropdown" do
             = t("views.application.sellers")
             %b.caret
           %ul.dropdown-menu
             %li= link_to t("views.application.sellers"), sellers_path if can? :index, Seller
             %li= link_to t("views.application.seller_origins"), seller_origins_path if can? :index, SellerOrigin
 
-      %li{ :class => active("payment_methods") }
+      %li{class: active("payment_methods")}
         = link_to t("views.application.payment_methods"), payment_methods_path
       - if can? :index, Placement
-        %li{ :class => active("placements") }
+        %li{class: active("placements")}
           = link_to t("views.application.placements"), placements_path
       - if can? :index, Status
-        %li{ :class => active("statuses") }
+        %li{class: active("statuses")}
           = link_to t("views.application.statuses"), statuses_path
+      - if can? :read, :statistics
+        %li{class: active("statistics")}
+          = link_to t(:statistics), statistics_path
       - if can? :read, Log
-        %li{ :class => active("logs") }
+        %li{class: active("logs")}
           = link_to t("views.application.log"), logs_path
       %li.divider-vertical
 

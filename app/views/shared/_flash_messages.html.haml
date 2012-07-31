@@ -1,5 +1,6 @@
 - flash.each do |name, message|
   - css_class = "alert-error" if name == :alert
+  - css_class = "alert-success" if name == :notice
   #alerts-wrapper
     %div{:class => "alert #{css_class}", :data => {:name => name}}
       = link_to "x", "#", :class => "close", :data => { :dismiss => :alert }
