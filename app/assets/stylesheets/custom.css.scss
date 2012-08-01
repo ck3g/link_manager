@@ -111,3 +111,12 @@ h2.inactive {
 }
 
 .no-margin { margin: 0px; }
+
+.form-horizontal {
+  div.checkbox.inline {
+    .control-label {
+      text-align: left;
+    }
+  }
+}
+

@@ -1,0 +1,53 @@
+ru:
+  helpers:
+    submit:
+      create: Создать
+      update: Сохранить
+
+  simple_form:
+    "yes": 'Да'
+    "no": 'Нет'
+    required:
+      text: 'обязательное'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Ознакомьтесь со сделющими ошибками, пожалуйста:"
+    # Labels and hints examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+
+    labels:
+      link:
+        url: URL
+        page_rank: PR
+        name: Название
+        placement: Размещение
+        keyword: Ключевое слово
+        status_id: Статус
+        our_site: Наш сайт
+        inactive: Неактивна
+      seller:
+        name: Имя
+        wm_wallet: Кошелек WM
+        seller_origin: Происхождение
+      placement:
+        name: Размещение
+      payment:
+        seller: Продавец
+        payment_method: Метод оплаты
+        amount: Разовая сумма
+        paid_at: Дата оплаты
+        next_payment_at: Оплачено до

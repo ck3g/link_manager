@@ -1,9 +1,10 @@
-= semantic_form_for our_site do |f|
-  = f.inputs do
-    = f.input :name
-    = f.input :category, :as => :select
-  = f.inputs :title => t(:visible_for_users) do
-    = f.input :access_list_users, :as => :check_boxes, :collection => User.moderators
-  = f.buttons :class => "form-actions" do
-    = f.commit_button :button_html => { :class => 'btn btn-primary', :disable_with => t("views.application.wait") }
+= simple_form_for our_site, html: { class: "form-horizontal" } do |f|
+  = f.input :name
+  = f.association :category
+  %fieldset
+    %legend= t(:visible_for_users)
+    = f.association :access_list_users, as: :check_boxes, collection: User.moderators, label: false
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary', disable_with: t("views.application.wait")
 

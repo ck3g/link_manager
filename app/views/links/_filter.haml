@@ -1,4 +1,4 @@
-.modal.hide#filter-modal
+.modal.fade#filter-modal
   .modal-header
     %button.close{:type => "button", :"data-dismiss" => "modal"}= "x"
     %h3= t("views.links.filter")
@@ -6,7 +6,7 @@
   = form_tag links_path, :method => :get, :class => 'form-horizontal' do
     .modal-body
       = hidden_field_tag :filter, 1
-      - [:url, :page_rank, :placement, :link_name, :keyword, :seller].each do |field|
+      - [:url, :page_rank, :placement, :keyword, :seller].each do |field|
         .control-group
           %label.control-label{ :for => field }
             = t("views.links.#{field}")

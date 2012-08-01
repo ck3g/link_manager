@@ -10,8 +10,7 @@ gem "haml", "~> 3.1.4"
 gem "kaminari", "~> 0.13.0"
 gem "devise", "~> 1.5.2"
 gem 'bitmask_attributes'
-gem "formtastic", "~> 2.1.1"
-gem "formtastic-bootstrap"
+gem 'simple_form'
 gem "meta-tags", :require => 'meta_tags'
 gem "has_scope", "~> 0.5.1"
 gem "bootstrap-sass"

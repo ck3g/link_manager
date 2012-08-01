@@ -20,7 +20,7 @@ class Link < ActiveRecord::Base
 
   attr_protected :user_id
 
-  validates :url, :name, :keyword, :placement_id, :presence => true
+  validates :url, :keyword, :placement_id, :presence => true
   validates :page_rank, :numericality => true, :inclusion => { :in => 1..10 }
 
   before_update :update_history
