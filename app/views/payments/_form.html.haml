@@ -1,5 +1,5 @@
 = simple_form_for [link, payment], html: { class: "form-horizontal" } do |f|
-  = f.input :seller, as: :select
+  = f.association :seller, as: :select
   = f.association :payment_method, as: :select, collection: (PaymentMethod.visible_for(current_user.id) unless current_user.admin?)
   = f.input :amount
   = f.input :paid_at, as: :date, input_html: { class: "input-mini" }

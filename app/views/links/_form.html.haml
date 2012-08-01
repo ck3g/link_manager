@@ -1,10 +1,10 @@
 = simple_form_for link, html: { class: "form-horizontal" } do |f|
   = f.input :url, as: :string
   = f.input :page_rank
-  = f.input :placement_id, as: :select, collection: Placement.all
+  = f.association :placement, as: :select, collection: Placement.all
   = f.input :keyword
-  = f.input :status_id, as: :select, collection: Status.all
-  = f.input :our_site, as: :select, collection: OurSite.collection_for(current_user)
+  = f.association :status, as: :select, collection: Status.all
+  = f.association :our_site, as: :select, collection: OurSite.collection_for(current_user)
   = f.input :inactive, wrapper: :inline_checkbox
 
   .form-actions
