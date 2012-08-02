@@ -7,7 +7,7 @@ class Payment < ActiveRecord::Base
   attr_protected :link_id, :user_id
 
   validates :amount, :presence => true, :numericality => true
-  validates :paid_at, :next_payment_at, :presence => true
+  validates :paid_at, :next_payment_at, :payment_method_id, :presence => true
   validate :payment_dates
 
   delegate :name, :to => :seller, :prefix => true

@@ -1,0 +1,9 @@
+
+ru:
+  activerecord:
+    errors:
+      models:
+        payment:
+          attributes:
+            payment_method_id:
+              blank: Не может быть пустым
