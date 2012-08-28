@@ -10,7 +10,7 @@ class Payment < ActiveRecord::Base
   validates :paid_at, :next_payment_at, :payment_method_id, :presence => true
   validate :payment_dates
 
-  delegate :name, to: :seller, prefix: true
+  delegate :name, to: :seller, prefix: true, allow_nil: true
   delegate :name, to: :payment_method, prefix: true, allow_nil: true
   delegate :email, to: :user, prefix: true
   delegate :url, to: :link, prefix: true

@@ -11,6 +11,7 @@ class Link < ActiveRecord::Base
 
   belongs_to :user
   has_many :payments, dependent: :destroy
+  has_many :unmoderated_payments, class_name: "Payment", conditions: { moderated: false }
   belongs_to :status
   belongs_to :placement
   belongs_to :our_site
@@ -35,7 +36,7 @@ class Link < ActiveRecord::Base
   scope :keyword, proc { |keyword| where('keyword LIKE ?', "%#{keyword}%") }
   scope :inactive, lambda { where(:inactive => false) }
   scope :with_unmoderated_count, lambda {
-    joins{payments.outer}.
+    joins{unmoderated_payments.outer}.
     group{links.id}.
     select{"links.*, COUNT(payments.id) AS unmoderated_payments_count"}
   }
