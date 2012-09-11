@@ -1,7 +1,7 @@
 %h1= title t("views.payments.payments_for", :name => @link.url)
 
 %p
-  = link_to t("views.application.new"), new_link_payment_path(@link), :class => "btn"
+  = link_to t("views.application.new"), new_payment_path(link_id: @link), :class => "btn"
 
 - if @payments.present?
   %table.table.table-striped
@@ -28,12 +28,12 @@
           %td= to_currency payment.per_month
           %td.actions
             - if can?(:moderate, Payment) && !payment.moderated?
-              = link_to moderate_link_payment_path(@link, payment), :method => :post, :class => "btn btn-success" do
+              = link_to moderate_payment_path(payment, link_id: @link.id), :method => :post, :class => "btn btn-success" do
                 %i.icon-ok.icon-white
                 = t("views.application.moderate")
-            = link_to t("views.application.edit"), edit_link_payment_path(@link.id, payment.id), :class => "btn"
+            = link_to t("views.application.edit"), edit_payment_path(payment.id, link_id: @link.id), :class => "btn"
             - if can? :destroy, Payment
-              = link_to t("views.application.destroy"), link_payment_path(@link, payment), :method => :delete, :confirm => t("views.application.are_you_sure"), :class => "btn btn-danger"
+              = link_to t("views.application.destroy"), payment_path(payment), :method => :delete, :confirm => t("views.application.are_you_sure"), :class => "btn btn-danger"
       %tr.total
         %td{:colspan => 4}
         %th= t("views.payments.total_amount")

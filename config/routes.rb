@@ -6,13 +6,14 @@ LinkManager::Application.routes.draw do
   resources :logs, :statistics, only: [:index]
 
   resources :links do
-    resources :payments do
-      post :moderate, on: :member
-    end
     get 'check', on: :collection
     post 'check', on: :collection
 
     resources :update_histories, only: :index
+  end
+
+  resources :payments do
+    post :moderate, on: :member
   end
 
   resources :sellers do

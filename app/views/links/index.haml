@@ -1,68 +1,72 @@
-%p
-  = link_to t("views.application.new"), new_link_path, class: "btn"
-
-  - if can? :check, Link
-    = link_to t("views.links.check"), check_links_path, class: "btn"
-
-  - if params[:inactive].blank?
-    = link_to t("views.links.show_inactive"), links_path(inactive: true), class: "btn btn-info"
-  - else
-    = link_to t("views.links.hide_inactive"), links_path, class: "btn btn-info"
-  = link_to "#filter-modal", class: "btn", :"data-toggle" => "modal" do
-    %i.icon-search
-    = t("views.links.filter")
-
 = render "filter"
 
-.sideleft
-  - if @links.present?
-    %table.table.table-striped
-      %thead
-        %tr
-          %th= t("views.links.url")
-          %th= t("views.links.page_rank")
-          %th= t("views.links.placement")
-          %th= t("views.links.keyword")
-          %th= t("views.links.seller")
-          %th= t("views.links.payment_method")
-          %th= t("views.links.days_left")
-          %th= t(:status)
-          %th
-          %th.actions= t("views.application.actions")
-      %tbody
-        - @links.each do |link|
-          %tr{class: ("inactive" if link.inactive?)}
-            %td= link.url
-            %td= link.page_rank
-            %td= link.placement_name
-            %td= link.keyword
-            %td= link.seller_name
-            %td= link.payment_method_name
-            %td= link.days_left
-            %td= link.status_name
-            %td
-              - if current_user.admin? && link.has_unmoderated_payments?
-                %span.badge.badge-warning{title: t(:unmoderated_payments_count)}
-                  = link.unmoderated_payments_count
-            %td.actions
-              .btn-toolbar.no-margin
-                .btn-group
-                  = link_to t("views.links.payments"), link_payments_path(link.id), class: "btn has-tooltip", title: t("views.links.payments")
-                  - if can? :index, UpdateHistory
-                    = link_to t(:history), link_update_histories_path(link), class: "btn has-tooltip", title: t(:history)
-                  = link_to link_path(link.id), class: "btn has-tooltip", title: t("views.application.show") do
-                    %i.icon-eye-open
-                  = link_to edit_link_path(link.id), class: "btn has-tooltip", title: t("views.application.edit") do
-                    %i.icon-edit
-                  = link_to link, data: { confirm: t("views.application.are_you_sure") }, method: :delete, class: "btn btn-danger has-tooltip", title: t("views.application.destroy") do
-                    %i.icon-trash.icon-white
-  - else
-    %p
-      - if params[:filter].present?
-        = t(:filter_results_is_empty)
-        = link_to t(:clear_filter), links_path
-      - else
-        = t(:link_list_is_empty)
+= form_tag new_payment_path, method: :get do
+  %p
+    = link_to t("views.application.new"), new_link_path, class: "btn"
+    = submit_tag t(:pay_selected), class: "btn"
+
+    - if can? :check, Link
+      = link_to t("views.links.check"), check_links_path, class: "btn"
+
+    - if params[:inactive].blank?
+      = link_to t("views.links.show_inactive"), links_path(inactive: true), class: "btn btn-info"
+    - else
+      = link_to t("views.links.hide_inactive"), links_path, class: "btn btn-info"
+    = link_to "#filter-modal", class: "btn", :"data-toggle" => "modal" do
+      %i.icon-search
+      = t("views.links.filter")
+
+  .sideleft
+    - if @links.present?
+      %table.table.table-striped
+        %thead
+          %tr
+            %th
+            %th= t("views.links.url")
+            %th= t("views.links.page_rank")
+            %th= t("views.links.placement")
+            %th= t("views.links.keyword")
+            %th= t("views.links.seller")
+            %th= t("views.links.payment_method")
+            %th= t("views.links.days_left")
+            %th= t(:status)
+            %th
+            %th.actions= t("views.application.actions")
+        %tbody
+          - @links.each do |link|
+            %tr{class: ("inactive" if link.inactive?)}
+              %td= check_box_tag "link_ids[]", link.id
+              %td= link.url
+              %td= link.page_rank
+              %td= link.placement_name
+              %td= link.keyword
+              %td= link.seller_name
+              %td= link.payment_method_name
+              %td= link.days_left
+              %td= link.status_name
+              %td
+                - if current_user.admin? && link.has_unmoderated_payments?
+                  %span.badge.badge-warning{title: t(:unmoderated_payments_count)}
+                    = link.unmoderated_payments_count
+              %td.actions
+                .btn-toolbar.no-margin
+                  .btn-group
+                    = link_to t("views.links.payments"), payments_path(link_id: link.id), class: "btn has-tooltip", title: t("views.links.payments")
+                    - if can? :index, UpdateHistory
+                      = link_to t(:history), link_update_histories_path(link), class: "btn has-tooltip", title: t(:history)
+                    = link_to link_path(link.id), class: "btn has-tooltip", title: t("views.application.show") do
+                      %i.icon-eye-open
+                    = link_to edit_link_path(link.id), class: "btn has-tooltip", title: t("views.application.edit") do
+                      %i.icon-edit
+                    = link_to link, data: { confirm: t("views.application.are_you_sure") }, method: :delete, class: "btn btn-danger has-tooltip", title: t("views.application.destroy") do
+                      %i.icon-trash.icon-white
+    - else
+      %p
+        - if params[:filter].present?
+          = t(:filter_results_is_empty)
+          = link_to t(:clear_filter), links_path
+        - else
+          = t(:link_list_is_empty)
 
   = paginate @links
   = render 'shared/per_page' if @links.present?

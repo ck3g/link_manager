@@ -1,4 +1,9 @@
-= simple_form_for [link, payment], html: { class: "form-horizontal" } do |f|
+- if payment.errors.messages.present?
+  .alert.alert-error
+    = t(:error_for_link, url: payment.link_url)
+= simple_form_for payment, html: { class: "form-horizontal" } do |f|
+  = hidden_field_tag "link_id", link.try(:id) if link.present?
+  = hidden_field_tag "link_ids", params[:link_ids].join("-") if params[:link_ids].present?
   = f.association :seller, as: :select
   = f.association :payment_method, as: :select, collection: (PaymentMethod.visible_for(current_user.id) unless current_user.admin?)
   = f.input :amount

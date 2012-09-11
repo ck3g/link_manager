@@ -171,8 +171,6 @@ ru:
       paid_at: "Дата оплаты"
       next_payment_at: "Оплачено до"
       payments_for: "Оплаты для %{name}"
-      new_for: "Новая оплата для %{name}"
-      edit_for: "Редактирование оплаты для %{name}"
       id: "id"
       per_month: "В месяц"
     logs:
@@ -261,4 +259,8 @@ ru:
   total_links: Всего ссылок
   by_page_rank: По PR
   by_domains: По доменам
+  pay_selected: Оплатить выбранные
+  new_payment: Новая оплата
+  edit_payment: Редактировать оплату
+  error_for_link: Произошла ошибка при создании оплаты для ссылки %{url}
 
