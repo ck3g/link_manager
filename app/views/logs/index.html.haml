@@ -12,6 +12,6 @@
       - @logs.each do |log|
         %tr
           %td= l(log.created_at)
-          %td= link_to log.user_email, logs_path(:user_id => log.user_id)
-          %td= link_to log.link_name, logs_path(:link_id => log.link_id)
+          %td= link_to log.user_email, logs_path(user_id: log.user_id)
+          %td= link_to log.link_url, logs_path(link_id: log.link_id)
           %td= log.description

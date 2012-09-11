@@ -2,10 +2,8 @@ class Log < ActiveRecord::Base
   belongs_to :user
   belongs_to :link
 
-  attr_protected :user_id, :link_id
-
   delegate :email, to: :user, prefix: true, allow_nil: true
-  delegate :name, to: :link, prefix: true, allow_nil: true
+  delegate :url, to: :link, prefix: true, allow_nil: true
 
   scope :user_id, proc { |user_id| where(user_id: user_id) }
   scope :link_id, proc { |link_id| where(link_id: link_id) }
