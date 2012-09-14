@@ -41,6 +41,7 @@ group :development do
   gem 'capistrano_colors', :require => false
   gem 'rvm-capistrano', :require => false
   gem 'rails_best_practices'
+  gem "pry-rails"
 end
 
 group :test do

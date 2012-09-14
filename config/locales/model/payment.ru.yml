@@ -7,3 +7,6 @@ ru:
           attributes:
             payment_method_id:
               blank: Не может быть пустым
+    attributes:
+      payment:
+        next_payment_at: Оплачено до

@@ -14,6 +14,7 @@ LinkManager::Application.routes.draw do
 
   resources :payments do
     post :moderate, on: :member
+    post :extend_to, on: :collection
   end
 
   resources :sellers do

@@ -1,7 +1,7 @@
-%h1= title t("views.payments.payments_for", :name => @link.url)
+%h1= title t("views.payments.payments_for", name: @link.url)
 
 %p
-  = link_to t("views.application.new"), new_payment_path(link_id: @link), :class => "btn"
+  = link_to t("views.application.new"), new_payment_path(link_id: @link), class: "btn"
 
 - if @payments.present?
   %table.table.table-striped
@@ -27,15 +27,30 @@
           %td= to_currency payment.amount
           %td= to_currency payment.per_month
           %td.actions
-            - if can?(:moderate, Payment) && !payment.moderated?
-              = link_to moderate_payment_path(payment, link_id: @link.id), :method => :post, :class => "btn btn-success" do
-                %i.icon-ok.icon-white
-                = t("views.application.moderate")
-            = link_to t("views.application.edit"), edit_payment_path(payment.id, link_id: @link.id), :class => "btn"
-            - if can? :destroy, Payment
-              = link_to t("views.application.destroy"), payment_path(payment), :method => :delete, :confirm => t("views.application.are_you_sure"), :class => "btn btn-danger"
+            .modal.fade#extend-to-modal{:"tab-index" => -1, role: "dialog", :"aria-labellerdby" => "modal-header", :"aria-hidden" => true}
+              = simple_form_for Payment.new, url: extend_to_payments_path, remote: true, html: { class: "form-horizontal" } do |f|
+                .modal-header
+                  %button.close{:"data-dismiss" => "modal", :"aria-hidden" => true} &times;
+                  %h3#modal-header= t(:extend_to)
+                .modal-body
+                  = hidden_field_tag :from_payment_id, payment.id
+                  = f.collection_radio_buttons :next_payment_in_a, collection_of_months, :first, :last
+                .modal-footer
+                  = f.submit t(:extend), class: "btn btn-primary", disable_with: t(:wait)
+
+            .btn-toolbox
+              .btn-group
+                - if can?(:moderate, Payment) && !payment.moderated?
+                  = link_to moderate_payment_path(payment, link_id: @link.id), method: :post, class: "btn btn-success" do
+                    %i.icon-ok.icon-white
+                    = t("views.application.moderate")
+                - if @payments.last == payment
+                  = link_to t(:extend_to), "#extend-to-modal", class: "btn", role: "button", :"data-toggle" => "modal"
+                = link_to t("views.application.edit"), edit_payment_path(payment.id, link_id: @link.id), class: "btn"
+                - if can? :destroy, Payment
+                  = link_to t("views.application.destroy"), payment_path(payment), method: :delete, confirm: t("views.application.are_you_sure"), class: "btn btn-danger"
       %tr.total
-        %td{:colspan => 4}
+        %td{colspan: 4}
         %th= t("views.payments.total_amount")
         %td= to_currency @link.total_amount
         %td

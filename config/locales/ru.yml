@@ -263,4 +263,10 @@ ru:
   new_payment: Новая оплата
   edit_payment: Редактировать оплату
   error_for_link: Произошла ошибка при создании оплаты для ссылки %{url}
-
+  extend_to: Продлить...
+  wait: ...
+  extend: Продлить
+  for_1_month: На 1 месяц
+  for_3_months: На 3 месяца
+  for_6_months: На 6 месяцев
+  for_12_months: На 12 месяцев

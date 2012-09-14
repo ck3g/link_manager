@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   load_and_authorize_resource
-  before_filter :find_link
+  before_filter :find_link, except: [:extend_to]
   before_filter :find_payment, only: [:edit, :update, :destroy, :moderate]
 
   def index
@@ -17,6 +17,7 @@ class PaymentsController < ApplicationController
     end
 
     if @links.present?
+      # FIXME: use transaction
       @links.each do |link|
         @payment = link.payments.build params[:payment]
         @payment.user_id = current_user.id
@@ -57,6 +58,21 @@ class PaymentsController < ApplicationController
   def moderate
     @payment.update_attribute :moderated, true
     redirect_to payments_path(link_id: @link)
+  end
+
+  def extend_to
+    @from_payment = Payment.find(params[:from_payment_id])
+    @payment = @from_payment.link.build @from_payment.attributes
+    @payment.user_id = current_user.id
+    @payment.paid_at = if @from_payment.next_payment_at > DateTime.current
+                         @from_payment.next_payment_at + 1.day
+                       else
+                         DateTime.current
+                       end
+    @payment.next_payment_at = params[:next_payment_at]
+    logger.info "*" * 80
+    logger.info @payment.inspect
+    logger.info "*" * 80
   end
 
   private

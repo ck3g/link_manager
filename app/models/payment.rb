@@ -4,7 +4,8 @@ class Payment < ActiveRecord::Base
   belongs_to :payment_method
   belongs_to :link
 
-  attr_protected :user_id, :link_id
+  attr_protected :user_id, :link_id, :moderated
+  attr_reader :next_payment_in_a
 
   validates :amount, :presence => true, :numericality => true
   validates :paid_at, :next_payment_at, :payment_method_id, :presence => true

@@ -113,10 +113,21 @@ h2.inactive {
 .no-margin { margin: 0px; }
 
 .form-horizontal {
-  div.checkbox.inline {
+  div.checkbox.inline, div.radio.inline {
     .control-label {
       text-align: left;
     }
   }
-}
 
+  label.collection_check_boxes, label.collection_radio_buttons {
+    display: inline;
+    margin-right: 10px;
+  }
+
+  div.collection_check_boxes {
+    span {
+      display: block;
+      margin-bottom: 3px;
+    }
+  }
+}
