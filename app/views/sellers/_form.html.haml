@@ -1,6 +1,7 @@
 = simple_form_for seller, html: { class: "form-horizontal"} do |f|
   = f.input :name
   = f.input :wm_wallet
-  = f.input :seller_origin
+  = f.association :seller_origin
+  = f.input :email
   .form-actions
     = f.button :submit, class: 'btn btn-primary', disable_with: t("views.application.wait")

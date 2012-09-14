@@ -6,4 +6,10 @@
   %tr
     %th= t(:wm_wallet)
     %td= @seller.wm_wallet
+  %tr
+    %th= Seller.human_attribute_name(:seller_origin)
+    %td= @seller.seller_origin_name
+  %tr
+    %th= Seller.human_attribute_name(:email)
+    %td= @seller.email
 

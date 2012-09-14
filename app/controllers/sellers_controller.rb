@@ -1,13 +1,12 @@
 class SellersController < ApplicationController
   load_and_authorize_resource
-  before_filter :find_seller, :only => [:edit, :update, :destroy]
+  before_filter :find_seller, :only => [:show, :edit, :update, :destroy]
 
   def index
     @sellers = Seller.all
   end
 
   def show
-    @seller = Seller.find(params[:id])
   end
 
   def new

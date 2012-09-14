@@ -1,8 +1,8 @@
-%h1
-  = title t("views.sellers.title")
+%h1= title t("views.sellers.title")
 
-%p
-  = link_to t("views.application.new"), new_seller_path, :class => "btn" if can? :create, Seller
+- if can? :create, Seller
+  %p
+    = link_to t("views.application.new"), new_seller_path, class: "btn"
 
 - if @sellers.present?
   %table.table.table-striped
@@ -11,6 +11,8 @@
         %th= t("views.sellers.id")
         %th= t("views.sellers.name")
         %th= t(:wm_wallet)
+        %th= Seller.human_attribute_name(:seller_origin)
+        %th= Seller.human_attribute_name(:email)
         %th.actions= t("views.application.actions")
     %tbody
       - @sellers.each do |seller|
@@ -18,9 +20,15 @@
           %td= seller.id
           %td= seller.name
           %td= seller.wm_wallet
+          %td= seller.seller_origin_name
+          %td= seller.email
           %td.actions
-            = link_to t("views.application.show"), seller_path(seller.id), :class => "btn" if can? :read, Seller
-            - if can? :manage, Seller
-              = link_to t("views.application.edit"), edit_seller_path(seller.id), :class => "btn"
-              = link_to t("views.application.destroy"), seller, :confirm => t("views.application.are_you_sure"), :method => :delete, :class => "btn btn-danger"
+            .btn-toolbox
+              .btn-group
+                - if can? :read, Seller
+                  = link_to t("views.application.show"), seller_path(seller.id), class: "btn"
+                - if can? :manage, Seller
+                  = link_to t("views.application.edit"), edit_seller_path(seller.id), class: "btn"
+                  = link_to seller, confirm: t(:are_you_sure), method: :delete, class: "btn btn-danger has-tooltip", title: t(:destroy) do
+                    %i.icon-trash.icon-white
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725060628) do
+ActiveRecord::Schema.define(:version => 20120914163557) do
 
   create_table "access_list_users_our_sites", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -161,8 +161,10 @@ ActiveRecord::Schema.define(:version => 20120725060628) do
     t.datetime "updated_at"
     t.string   "wm_wallet"
     t.integer  "seller_origin_id"
+    t.string   "email"
   end
 
+  add_index "sellers", ["email"], :name => "index_sellers_on_email"
   add_index "sellers", ["seller_origin_id"], :name => "index_sellers_on_seller_origin_id"
 
   create_table "statuses", :force => true do |t|
