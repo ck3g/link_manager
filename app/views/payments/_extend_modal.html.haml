@@ -1,0 +1,23 @@
+.modal.fade#extend-to-modal{:"tab-index" => -1, role: "dialog", :"aria-labellerdby" => "modal-header", :"aria-hidden" => true}
+  = simple_form_for Payment.new, url: extend_to_payments_path, remote: true, html: { class: "form-horizontal" } do |f|
+    .modal-header
+      %button.close{:"data-dismiss" => "modal", :"aria-hidden" => true} &times;
+      %h3#modal-header= t(:extend_to)
+    .modal-body
+      = hidden_field_tag :from_payment_id, payment.id
+      = hidden_field_tag :next_payment_in_a, "", id: "js-extend-by"
+      .control-group
+        .btn-group{:"data-toggle" => "buttons-radio"}
+          %a.btn.js-extend-by{ href: "#", data: { months: 1 } }= t(:for_1_month)
+          %a.btn.js-extend-by{ href: "#", data: { months: 3 } }= t(:for_3_months)
+          %a.btn.js-extend-by{ href: "#", data: { months: 6 } }= t(:for_6_months)
+          %a.btn.js-extend-by{ href: "#", data: { months: 12 } }= t(:for_12_months)
+
+      .control-group.info
+        %label.control-label= t(:or_to_date)
+        .controls
+          = text_field_tag :next_payment_at, "", :"data-behavior" => "datepicker"
+          %span.help-inline= t(:this_has_high_priority)
+
+    .modal-footer
+      = f.submit t(:extend), class: "btn btn-primary", disable_with: t(:wait)

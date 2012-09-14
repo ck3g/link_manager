@@ -61,18 +61,24 @@ class PaymentsController < ApplicationController
   end
 
   def extend_to
-    @from_payment = Payment.find(params[:from_payment_id])
-    @payment = @from_payment.link.build @from_payment.attributes
-    @payment.user_id = current_user.id
-    @payment.paid_at = if @from_payment.next_payment_at > DateTime.current
-                         @from_payment.next_payment_at + 1.day
-                       else
-                         DateTime.current
-                       end
-    @payment.next_payment_at = params[:next_payment_at]
-    logger.info "*" * 80
-    logger.info @payment.inspect
-    logger.info "*" * 80
+    from_payment = Payment.find(params[:from_payment_id])
+
+    payment = Payment.init_from_payment(from_payment,
+                                        params[:next_payment_at],
+                                        params[:next_payment_in_a])
+    payment.user = current_user
+
+    if payment.save
+      flash[:notice] = t(:payment_was_extended)
+    else
+      flash[:alert] = t(:error_extend_payment)
+    end
+
+    @redirect_to_path = payments_path(link_id: from_payment.link_id)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

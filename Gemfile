@@ -16,6 +16,7 @@ gem "has_scope", "~> 0.5.1"
 gem "bootstrap-sass"
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :git => 'git://github.com/anjlab/bootstrap-rails.git'
+gem "bootstrap-datepicker-rails"
 gem "cancan", "1.6.7"
 gem "squeel"
 

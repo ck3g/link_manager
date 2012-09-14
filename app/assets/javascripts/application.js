@@ -8,6 +8,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
 //= require_tree .
 //
 
@@ -16,7 +18,12 @@ $(function() {
     $(this).fadeOut("slow");
   });
 
-  $('.datepicker').datepicker($.datepicker.regional['ru']);
+  $("[data-behavior~='datepicker']").datepicker({
+    "autoclose": true,
+    "format": "dd.mm.yyyy",
+    "weekStart": 1,
+    "language": "ru"
+  })
 
   $('.has-tooltip').tooltip();
 });

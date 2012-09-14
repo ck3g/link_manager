@@ -270,3 +270,7 @@ ru:
   for_3_months: На 3 месяца
   for_6_months: На 6 месяцев
   for_12_months: На 12 месяцев
+  payment_was_extended: Оплата была продлена
+  error_extend_payment: Ошибка при продлении оплаты
+  or_to_date: Или по
+  this_has_high_priority: Приоритет у выбранной даты
