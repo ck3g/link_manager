@@ -17,16 +17,17 @@ class PaymentsController < ApplicationController
     end
 
     if @links.present?
-      # FIXME: use transaction
-      @links.each do |link|
-        @payment = link.payments.build params[:payment]
-        @payment.user_id = current_user.id
-        if @payment.save
-          Log.user_creates_payment @payment
-        else
-          params[:link_ids] = params[:link_ids].split("-")
-          render :new
-          return
+      Payment.transaction do
+        @links.each do |link|
+          @payment = link.payments.build params[:payment]
+          @payment.user_id = current_user.id
+          if @payment.save
+            Log.user_creates_payment @payment
+          else
+            params[:link_ids] = params[:link_ids].split("-")
+            render :new
+            return
+          end
         end
       end
       redirect_to links_path, notice: t("views.application.successfully_created")
