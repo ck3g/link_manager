@@ -1,0 +1,7 @@
+
+ru:
+  activerecord:
+    attributes:
+      seller:
+        seller_origin: Происхождение
+        email: Email
