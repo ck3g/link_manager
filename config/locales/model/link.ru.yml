@@ -1,0 +1,13 @@
+
+ru:
+  activerecord:
+    attributes:
+      link:
+        url: URL
+        page_rank: PR
+        keyword: Ключевое слово
+        our_site: Наш сайт
+        inactive: Неактивна
+        placement: Размещение
+        status: Статус
+

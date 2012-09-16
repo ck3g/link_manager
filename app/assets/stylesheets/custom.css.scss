@@ -131,3 +131,26 @@ h2.inactive {
     }
   }
 }
+
+.inline-checkbox {
+  display: inline;
+  float: none !important;
+  margin-left: 0px !important;
+}
+
+.controls {
+  input.error, select.error {
+    border-color: #b94a48;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  }
+
+  input.error:focus, select.error:focus {
+    border-color: #953B39;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #D59392;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #D59392;
+  }
+}
+

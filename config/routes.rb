@@ -6,6 +6,7 @@ LinkManager::Application.routes.draw do
   resources :logs, :statistics, only: [:index]
 
   resources :links do
+    post :mass_create, on: :collection
     get 'check', on: :collection
     post 'check', on: :collection
 

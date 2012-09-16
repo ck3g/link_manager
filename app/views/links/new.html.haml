@@ -1,2 +1,52 @@
 %h1= title t("views.links.new")
-= render 'form', :link => @link
+
+= form_tag mass_create_links_path do
+  - @links.each do |link|
+    .control-group
+      .controls
+        - err = link.errors.messages
+        = text_field_tag "links[][url]",
+          link.url,
+          placeholder: Link.human_attribute_name(:url),
+          id: nil
+
+        = number_field_tag "links[][page_rank]",
+          link.page_rank,
+          placeholder: Link.human_attribute_name(:page_rank),
+          class: "input-mini #{"error" if err[:page_rank].present?}",
+          id: nil
+
+        = select_tag "links[][placement_id]",
+          options_from_collection_for_select(Placement.all, :id, :name, link.placement_id),
+          include_blank: true,
+          class: "input-medium #{"error" if err[:placement_id].present?}",
+          id: nil
+
+        = text_field_tag "links[][keyword]",
+          link.keyword,
+          placeholder: Link.human_attribute_name(:keyword),
+          class: ("error" if err[:keyword].present?),
+          id: nil
+
+        = select_tag "links[][status_id]",
+          options_from_collection_for_select(Status.all, :id, :name, link.status_id),
+          include_blank: true,
+          class: "input-medium",
+          id: nil
+
+        = select_tag "links[][our_site_id]",
+          options_from_collection_for_select(OurSite.collection_for(current_user), :last, :first, link.our_site_id),
+          include_blank: true,
+          id: nil
+
+        = label_tag nil, class: "inline-checkbox checkbox" do
+          = check_box_tag "links[][inactive]",
+            1,
+            link.inactive,
+            class: "inline-checkbox",
+            id: nil
+          = Link.human_attribute_name(:inactive)
+
+
+  .form-actions
+    = submit_tag t(:create), class: "btn btn-primary", :"data-disable-with" => t(:wait)

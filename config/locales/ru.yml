@@ -35,9 +35,6 @@ ru:
       two_words_connector: "; "
   activerecord:
     attributes:
-      link:
-        our_site: Наш сайт
-        inactive: Неактивна
       status:
         name: Название
       comment:
@@ -223,6 +220,8 @@ ru:
         link: "%{user} создал ссылку %{link}"
         payment_for_link: "%{user} оплатил ссылку %{link} c %{from} по %{to}"
 
+  successfully_created: "Успешно создано"
+  successfully_updated: "Успешно изменено"
   clear_filter: Сбросить параметры фильтра
   links_list_is_empty: Список ссылок пуст
   filter_results_is_empty: По вашему запросу ничего не найдено.
@@ -276,3 +275,4 @@ ru:
   this_has_high_priority: Приоритет у выбранной даты
   destroy: Удалить
   are_you_sure: Вы уверены?
+  create: Создать

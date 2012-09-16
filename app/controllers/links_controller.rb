@@ -20,7 +20,27 @@ class LinksController < ApplicationController
   end
 
   def new
-    @link = Link.new
+    @links = []
+    15.times { @links << Link.new }
+  end
+
+  def mass_create
+    @links = []
+
+    params[:links].each do |link_params|
+      link = current_user.links.new link_params
+      if link.url.present?
+        unless link.save
+          @links << link
+        end
+      end
+    end
+
+    if @links.blank?
+      redirect_to links_path, notice: t(:successfully_created)
+    else
+      render :new
+    end
   end
 
   def create
