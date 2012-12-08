@@ -2,11 +2,8 @@
 %html
   %head
     = display_meta_tags :site => "Link Manager"
-    = javascript_include_tag "application"
     = stylesheet_link_tag "application"
     = csrf_meta_tags
-    /[if lt IE 9]
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -27,4 +24,7 @@
         %p
           &copy; Company 2012
 
+    = javascript_include_tag "application"
+    /[if lt IE 9]
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 
