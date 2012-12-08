@@ -140,6 +140,8 @@ ru:
       check: "Проверка ссылок"
       check_label: "Введите ссылки на проверку. Раздеренные переводом строки"
       check_button: "Проверить"
+      find_domains: Поиск доменов
+      find_domains_label: "Введите домены для поиска. Раздеренные переводом строки"
       filter: "Фильтр"
       do_filter: "Фильтровать"
       link_name: Название
@@ -277,3 +279,7 @@ ru:
   are_you_sure: Вы уверены?
   create: Создать
   invalid_url: Неверная ссылка
+
+  checked_links: Провереные ссылки
+  found_domains: Найденые домены
+  occured_errors: Возникшие ошибки

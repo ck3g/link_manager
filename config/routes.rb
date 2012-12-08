@@ -7,8 +7,10 @@ LinkManager::Application.routes.draw do
 
   resources :links do
     post :mass_create, on: :collection
-    get 'check', on: :collection
-    post 'check', on: :collection
+    get :check, on: :collection
+    post :check, on: :collection
+    get :find_domains, on: :collection
+    post :find_domains, on: :collection
 
     resources :update_histories, only: :index
   end

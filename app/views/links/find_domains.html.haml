@@ -1,0 +1,32 @@
+%h1= title t("views.links.find_domains")
+
+%ul.nav.nav-tabs
+  %li= link_to t("views.links.check"), check_links_path
+  %li.active= link_to t("views.links.find_domains"), find_domains_links_path
+
+.tab-content
+  .tab-pane#find-domains.active
+    - if @checked_links.present?
+      %table.table.table-striped
+        %thead
+          %tr
+            %th= t(:checked_links)
+            %th= t(:found_domains)
+            %th= t(:occured_errors)
+        %tbody
+          - @checked_links.each do |link|
+            %tr{:class => link_row_class(link)}
+              %td= link[:page]
+              %td
+                - link[:domains].each do |domain|
+                  = domain
+                  %br/
+              %td= link[:error]
+
+    = form_tag find_domains_links_path do
+      %p
+        = text_area_tag :domains, params[:domains], :rows => 5, :placeholder => t("views.links.find_domains_label"), :class => 'check-links'
+      %p
+        = text_area_tag :links, params[:links], :rows => 10, :placeholder => t("views.links.check_label"), :class => 'check-links'
+      .form-actions
+        = submit_tag t("views.links.check_button"), :class => "btn btn-primary"

@@ -1,14 +1,21 @@
 %h1= title t("views.links.check")
 
-- if @links.present?
-  %ul.checked-links
-    - @links.each do |link|
-      %li
-        %span{:class => link[:class]}
-          = link[:url]
+%ul.nav.nav-tabs
+  %li.active= link_to t("views.links.check"), check_links_path
+  %li= link_to t("views.links.find_domains"), find_domains_links_path
 
-= form_tag check_links_path do
-  %p
-    = text_area_tag :links, params[:links], :rows => 15, :placeholder => t("views.links.check_label"), :class => 'check-links'
-  .form-actions
-    = submit_tag t("views.links.check_button"), :class => "btn btn-primary"
+.tab-content
+  .tab-pane#check.active
+
+    - if @links.present?
+      %ul.checked-links
+        - @links.each do |link|
+          %li
+            %span{:class => link[:class]}
+              = link[:url]
+
+    = form_tag check_links_path do
+      %p
+        = text_area_tag :links, params[:links], :rows => 15, :placeholder => t("views.links.check_label"), :class => 'check-links'
+      .form-actions
+        = submit_tag t("views.links.check_button"), :class => "btn btn-primary"

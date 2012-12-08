@@ -69,7 +69,7 @@ class LinksController < ApplicationController
   def check
     @links = []
     if params[:links].present?
-      links_to_check = params[:links].strip.split("\n").map(&:strip).compact.reject(&:blank?)
+      links_to_check = strip_strings(params[:links])
       links_to_check.each do |link_to_check|
         link = Link.where{url =~ "%#{link_to_check}"}.first
         css_class = if link.present?
@@ -83,9 +83,24 @@ class LinksController < ApplicationController
     end
   end
 
+  def find_domains
+    if params[:links].present?
+      links_to_check = strip_strings(params[:links])
+      domains_to_check = strip_strings(params[:domains])
+
+      @checked_links = []
+      links_to_check.each do |link|
+        @checked_links << DomainsFinder.new(link, domains_to_check).find
+      end
+    end
+  end
+
   private
   def find_link
     @link = Link.find params[:id]
   end
 
+  def strip_strings(strings)
+    strings.strip.split("\n").map(&:strip).compact.reject(&:blank?)
+  end
 end
