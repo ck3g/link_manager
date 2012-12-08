@@ -60,6 +60,8 @@ group :test do
   gem "shoulda"
   gem "ffaker", "~> 1.15.0"
   gem "launchy"
+  gem "vcr"
+  gem "fakeweb"
 
   gem 'rb-fsevent', '>= 0.4.3', :require => false
   gem 'growl',      '~> 1.0.3', :require => false
