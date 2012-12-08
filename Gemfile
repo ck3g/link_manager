@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails',        '~> 2.11.0'
   gem 'factory_girl_rails', '~> 3.5.0'
   gem 'guard-rspec'
+  gem "pry-rails"
 end
 
 group :development do
@@ -48,7 +49,6 @@ group :development do
   gem 'capistrano_colors', :require => false
   gem 'rvm-capistrano', :require => false
   gem 'rails_best_practices'
-  gem "pry-rails"
 end
 
 group :test do
